@@ -19,3 +19,6 @@ server:
 ---
 spring: 
   profiles: common
+  devtools: 
+    restart:
+      enable: false #表示是否触发类修改重启
