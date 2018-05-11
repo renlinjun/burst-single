@@ -58,10 +58,15 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Re
 		return requestData;
 	}
 
+	/**
+	 *向外客户端写该对象数据时会用到该方法
+	 */
 	@Override
-	protected void writeInternal(RequestData t, HttpOutputMessage outputMessage)
+	protected void writeInternal(RequestData requestData, HttpOutputMessage outputMessage)
 			throws IOException, HttpMessageNotWritableException {
 		// TODO Auto-generated method stub
+		System.out.println("writeInternal。。。。。。");
+		
 		
 	}
 
