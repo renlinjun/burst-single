@@ -2,6 +2,8 @@ package burst.core.model;
 
 import com.alibaba.fastjson.JSONObject;
 
+import burst.core.config.ResultConstants;
+
 /**
  * 统一数据返回格式
  * @author RLJ 2018-05-10
@@ -9,18 +11,33 @@ import com.alibaba.fastjson.JSONObject;
  *
  */
 public class ResponseData {
-	private String code;
+	private int code;
 	private String msg;
 	private JSONObject data;
 	
-	public ResponseData(JSONObject data) {
+	public ResponseData(int code,String msg,JSONObject data) {
 		this.data = data;
+		this.code = code;
+		this.msg = msg;
+	}
+	public ResponseData(int code,String msg) {
+		this(code,msg,null);
 	}
 	
-	public String getCode() {
+	public ResponseData(ResultConstants result,JSONObject data) {
+		this.data = data;
+		this.code = result.getCode();
+		this.msg = result.getMsg();
+	}
+	
+	public ResponseData(ResultConstants result) {
+		this(result,null);
+	}
+	
+	public int getCode() {
 		return code;
 	}
-	public void setCode(String code) {
+	public void setCode(int code) {
 		this.code = code;
 	}
 	public String getMsg() {

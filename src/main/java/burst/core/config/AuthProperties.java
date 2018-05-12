@@ -16,9 +16,10 @@ public class AuthProperties {
 	//密钥，用来加密生成TOKEN和解密TOKEN,必须有
 	@NotNull
 	private String secret;
-	
 	//token颁发者
 	private String issuer = "burst";
+	//验证用户名密码的登录地址
+	private String loginUrl="/login";
 
 	public String getSecret() {
 		return secret;
@@ -34,6 +35,14 @@ public class AuthProperties {
 
 	public void setIssuer(String issuer) {
 		this.issuer = issuer;
+	}
+
+	public String getLoginUrl() {
+		return loginUrl;
+	}
+
+	public void setLoginUrl(String loginUrl) {
+		this.loginUrl = loginUrl;
 	}
 
 }

@@ -1,6 +1,7 @@
 server: 
   port: 8888
 auth: 
+  loginUrl: /login
   secret: c2VkaW4=
   issuer: burst #token签发者
 spring: 

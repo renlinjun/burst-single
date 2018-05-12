@@ -37,8 +37,8 @@ public class JwtToken {
 			.addClaims(claim) //设置数据
 			.setIssuer(issuer) //签发者
 			.setIssuedAt(nowTime) //签发时间
-//			.setExpiration(DateUtil.offsetSecond(nowTime, 30)) //过期时间
-			.setExpiration(DateUtil.offsetHour(nowTime, 24)) //过期时间
+			.setExpiration(DateUtil.offsetSecond(nowTime, 30)) //过期时间
+//			.setExpiration(DateUtil.offsetHour(nowTime, 24)) //过期时间
 			.compact();
 		
 		return token;
