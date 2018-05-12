@@ -1,8 +1,8 @@
 server: 
   port: 8888
 auth: 
-  secret: 123456
-  issuer: burst
+  secret: c2VkaW4=
+  issuer: burst #token签发者
 spring: 
   profiles: 
     active: test
@@ -12,13 +12,16 @@ spring:
   profiles: dev
 server: 
   port: 80
+auth: 
+  open: false
   
 ---
 spring: 
   profiles: test
 server: 
   port: 8080
-
+auth: 
+  open: true
 ---
 spring: 
   profiles: tool
