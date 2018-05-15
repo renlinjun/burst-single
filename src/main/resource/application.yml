@@ -16,6 +16,7 @@ server:
 auth: 
   open: false
   
+  
 ---
 spring: 
   profiles: test
