@@ -24,13 +24,13 @@ public class RoleTypeServiceImpl extends ServiceImpl<RoleTypeMapper, RoleType> i
 	private RoleTypeMapper roleTypeMapper; 
 	
 	//添加RoleType
-	public void add(RequestData data) {};
+	public void add(RequestData requestData) {};
 	//删除
-	public void delete(RequestData data) {};
+	public void delete(RequestData requestData) {};
 	//更新
-	public void update(RequestData data) {};
+	public void update(RequestData requestData) {};
 	//查询
-	public List<RoleType> list(RequestData data) {
+	public List<RoleType> list(RequestData requestData) {
 		return null;
 	};
 }

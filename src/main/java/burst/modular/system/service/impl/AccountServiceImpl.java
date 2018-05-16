@@ -24,14 +24,20 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 	private AccountMapper accountMapper; 
 	
 	//添加Account
-	public void add(RequestData data) {
-	};
+	public void add(RequestData requestData) {};
 	//删除
-	public void delete(RequestData data) {};
+	public void delete(RequestData requestData) {};
 	//更新
-	public void update(RequestData data) {};
+	public void update(RequestData requestData) {};
 	//查询
-	public List<Account> list(RequestData data) {
+	public List<Account> list(RequestData requestData) {
 		return null;
+	}
+	@Override
+	public boolean isLegal(RequestData requestData) {
+		
+		
+		
+		return false;
 	};
 }

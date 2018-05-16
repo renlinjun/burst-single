@@ -28,16 +28,16 @@ public class RoleController {
 
 	//添加Role
 	@RequestMapping(value="/add")
-	public void add(RequestData data) {};
+	public void add(RequestData requestData) {};
 	//删除
 	@RequestMapping(value="/delete")
-	public void delete(RequestData data) {};
+	public void delete(RequestData requestData) {};
 	//更新
 	@RequestMapping(value="/update")
-	public void update(RequestData data) {};
+	public void update(RequestData requestData) {};
 	//查询
 	@RequestMapping(value="/list")
-	public List<Role> list(RequestData data) {
+	public List<Role> list(RequestData requestData) {
 		return null;
 	};
 }

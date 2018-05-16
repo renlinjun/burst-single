@@ -45,16 +45,16 @@ public class ${table.controllerName} {
 
 	//添加${entity}
 	@RequestMapping(value="/add")
-	public void add(RequestData data) {};
+	public void add(RequestData requestData) {};
 	//删除
 	@RequestMapping(value="/delete")
-	public void delete(RequestData data) {};
+	public void delete(RequestData requestData) {};
 	//更新
 	@RequestMapping(value="/update")
-	public void update(RequestData data) {};
+	public void update(RequestData requestData) {};
 	//查询
 	@RequestMapping(value="/list")
-	public List<${entity}> list(RequestData data) {
+	public List<${entity}> list(RequestData requestData) {
 		return null;
 	};
 }

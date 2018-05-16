@@ -12,5 +12,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-05-16
  */
 public interface AccountMapper extends BaseMapper<Account> {
+	
+	
 
 }

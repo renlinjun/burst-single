@@ -18,11 +18,11 @@ public interface IUserRoleService extends IService<UserRole> {
 	
 
 	//添加UserRole
-	public void add(RequestData data);
+	public void add(RequestData requestData);
 	//删除
-	public void delete(RequestData data);
+	public void delete(RequestData requestData);
 	//更新
-	public void update(RequestData data);
+	public void update(RequestData requestData);
 	//查询
-	public List<UserRole> list(RequestData data);
+	public List<UserRole> list(RequestData requestData);
 }
