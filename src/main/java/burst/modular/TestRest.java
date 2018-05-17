@@ -18,11 +18,11 @@ public class TestRest {
 	
 	@RequestMapping(value="/reqData",method=RequestMethod.POST)
 	public String test(@RequestBody RequestData requestData) {
-		return jwtToken.createToken();
+		return jwtToken.createToken("ren");
 	}
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(@RequestBody RequestData requestData) {
-		return jwtToken.createToken();
+		return jwtToken.createToken("ren");
 	}
 	
 	@RequestMapping(value="/getData",method=RequestMethod.POST)

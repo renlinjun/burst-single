@@ -30,6 +30,7 @@ public class ResponseData {
 		this.msg = result.getMsg();
 	}
 	
+
 	public ResponseData(ResultConstants result) {
 		this(result,null);
 	}

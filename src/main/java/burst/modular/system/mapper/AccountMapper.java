@@ -1,7 +1,11 @@
 package burst.modular.system.mapper;
 
-import burst.modular.system.entity.Account;
+import java.util.List;
+
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import burst.modular.system.entity.Account;
 
 /**
  * <p>
@@ -13,6 +17,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  */
 public interface AccountMapper extends BaseMapper<Account> {
 	
-	
+	public List<Account> selectAccount(JSONObject data);
 
 }

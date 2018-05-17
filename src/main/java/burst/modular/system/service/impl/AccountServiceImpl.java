@@ -1,13 +1,17 @@
 package burst.modular.system.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSONObject;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import burst.core.model.RequestData;
 import burst.modular.system.entity.Account;
 import burst.modular.system.mapper.AccountMapper;
 import burst.modular.system.service.IAccountService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import burst.core.model.RequestData;
-import java.util.List;
 
 /**
  * <p>
@@ -20,8 +24,6 @@ import java.util.List;
 @Service
 public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> implements IAccountService {
 	
-	@Autowired
-	private AccountMapper accountMapper; 
 	
 	//添加Account
 	public void add(RequestData requestData) {};
@@ -33,10 +35,17 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 	public List<Account> list(RequestData requestData) {
 		return null;
 	}
+	
 	@Override
 	public boolean isLegal(RequestData requestData) {
 		
+		JSONObject data = requestData.getData();
+		/** 查询用户名密码 */
+		List<Account> accounts = baseMapper.selectAccount(data);
 		
+		if(accounts.size()==1) {
+			return true;
+		}
 		
 		return false;
 	};

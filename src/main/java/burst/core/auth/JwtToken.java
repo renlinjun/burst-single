@@ -24,7 +24,7 @@ public class JwtToken {
 	 * 生成token,将用户id放入token中
 	 * @return
 	 */
-	public String createToken() {
+	public String createToken(String userId) {
 		String secret = authProperties.getSecret();
 		String issuer = authProperties.getIssuer();
 		

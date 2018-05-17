@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.service.IService;
 import burst.core.model.RequestData;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 /**
  * <p>
  *  服务类
@@ -26,6 +28,6 @@ public interface IAccountService extends IService<Account> {
 	//查询
 	public List<Account> list(RequestData requestData);
 	
-	//检查用户名密码是否合法
+	/**检查用户名密码是否合法*/
 	public boolean isLegal(RequestData requestData);
 }
