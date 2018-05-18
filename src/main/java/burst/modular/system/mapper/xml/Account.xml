@@ -3,7 +3,7 @@
 <mapper namespace="burst.modular.system.mapper.AccountMapper">
 
     <!-- 开启二级缓存 -->
-   <!--  <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+   <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="burst.modular.system.entity.Account">
@@ -18,8 +18,8 @@
         ID, ACCOUNT_NAME, PASSWD, USER_INFO_ID
     </sql>
     
-    <select id="selectAccount" parameterMap="map" resultType="map">
-		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from system.account A  where a.ACCOUNT_NAME=${user_name} AND A.PASSWD=${password}
+    <select id="selectAccount" resultType="map">
+		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from account A  where a.ACCOUNT_NAME=#{user_name} AND A.PASSWD=#{password}
     </select>
     
 

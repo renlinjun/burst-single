@@ -57,15 +57,18 @@ public class LoginFilter implements Filter {
 		//如果token验证通过，则执行下一个过滤器，否则返回信息
 		if(isTokenApprove) {
 			filterChain.doFilter(request, response);
+		}else {
+			response.setCharacterEncoding("UTF-8");    
+			response.setContentType("application/json; charset=utf-8");
+			
+			ResponseData result = new ResponseData(ResultConstants.NO_LOGIN);
+			response.getWriter().write(JSONUtil.parse(result).toString());
+			response.getWriter().flush();  
+	        response.getWriter().close();
 		}
 		
-		response.setCharacterEncoding("UTF-8");    
-		response.setContentType("application/json; charset=utf-8");
 		
-		ResponseData result = new ResponseData(ResultConstants.NO_LOGIN);
-		response.getWriter().write(JSONUtil.parse(result).toString());
-		response.getWriter().flush();  
-        response.getWriter().close(); 
+       
 		
 	}
 

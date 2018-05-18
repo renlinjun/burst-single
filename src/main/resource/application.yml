@@ -9,6 +9,10 @@ spring:
     active: dev
     include: tool #无论何时都讲common包含进来
 ---
+server: 
+  port: 80
+auth: 
+  open: false
 spring: 
   profiles: dev
   datasource:
@@ -18,13 +22,10 @@ spring:
     username: root
     password: 123456
 mybatis-plus: 
-  #mapper-location: classpath*:mapper/*.xml
+  mapper-locations: classpath:/burst/modular/*/mapper/xml/*.xml
   typeAliasesPackage: burst.modular.*.entity
-server: 
-  port: 80
-auth: 
-  open: false
-  
+  global-config: 
+    cache-enabled: false
   
 ---
 spring: 

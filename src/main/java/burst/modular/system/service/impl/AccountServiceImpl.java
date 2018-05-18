@@ -1,8 +1,8 @@
 package burst.modular.system.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
@@ -41,7 +41,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 		
 		JSONObject data = requestData.getData();
 		/** 查询用户名密码 */
-		List<Account> accounts = baseMapper.selectAccount(data);
+		List<Map<String,Object>> accounts = baseMapper.selectAccount(data);
 		
 		if(accounts.size()==1) {
 			return true;

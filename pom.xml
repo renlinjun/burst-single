@@ -33,6 +33,10 @@
       	<artifactId>mybatis-plus-boot-starter</artifactId>
       <version>2.2.0</version>
     </dependency>
+    <dependency>
+    	<groupId>org.ehcache</groupId>
+    	<artifactId>ehcache</artifactId>
+	</dependency>
    	<!-- mysql驱动 -->   
     <dependency>
         <groupId>mysql</groupId>
@@ -82,9 +86,9 @@
 	<resources>
 	    <resource>
 	        <directory>src/main/java</directory>
-	        <filtering>true</filtering>
+	        <filtering>false</filtering>
 	        <includes>
-	            <include>**/mapper/*.xml</include>
+	            <include>**/mapper/xml/*.xml</include>
 	        </includes>
 	    </resource>
 	</resources>
