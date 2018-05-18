@@ -6,15 +6,26 @@ auth:
   issuer: burst #token签发者
 spring: 
   profiles: 
-    active: test
+    active: dev
     include: tool #无论何时都讲common包含进来
 ---
-spring: 
-  profiles: dev
 server: 
   port: 80
 auth: 
   open: false
+spring: 
+  profiles: dev
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource 
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/burst?characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+mybatis-plus: 
+  mapper-locations: classpath:/burst/modular/*/mapper/xml/*.xml
+  typeAliasesPackage: burst.modular.*.entity
+  global-config: 
+    cache-enabled: false
   
 ---
 spring: 

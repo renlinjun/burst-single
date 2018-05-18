@@ -9,6 +9,7 @@
   	<java.version>1.8</java.version>
   	<!-- 版本号只在dependencyManagement中可使用属性引用 -->
   	<springboot.version>2.0.0.RELEASE</springboot.version>
+  	<mysql.version>5.1.32</mysql.version>
   </properties>
   
   <parent>
@@ -27,6 +28,35 @@
 	    <groupId>com.baomidou</groupId>
 	    <artifactId>mybatis-plus-boot-starter</artifactId>
 	    <version>2.2.0</version>
+	</dependency>
+  	<dependency>
+  		<groupId>org.springframework.boot</groupId>
+    	<artifactId>spring-boot-starter-data-redis</artifactId>
+  	</dependency>
+  	<!-- Mybatis与spring boot集成 -->
+  	<dependency>
+  		<groupId>com.baomidou</groupId>
+      	<artifactId>mybatis-plus-boot-starter</artifactId>
+      <version>2.2.0</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.ehcache</groupId>
+    	<artifactId>ehcache</artifactId>
+	</dependency>
+   	<!-- mysql驱动 -->   
+    <dependency>
+        <groupId>mysql</groupId>
+        <artifactId>mysql-connector-java</artifactId>
+  	</dependency>
+  	<dependency>
+    	<groupId>com.alibaba</groupId>
+    	<artifactId>druid</artifactId>
+    	<version>1.1.8</version>
+	</dependency>
+  	<!-- 模板引擎支持 -->
+  	<dependency>
+	    <groupId>org.freemarker</groupId>
+	    <artifactId>freemarker</artifactId>
 	</dependency>
   	<dependency>
 		<groupId>org.springframework.boot</groupId>
@@ -59,6 +89,15 @@
   </dependencies>
   
   <build>
+	<resources>
+	    <resource>
+	        <directory>src/main/java</directory>
+	        <filtering>false</filtering>
+	        <includes>
+	            <include>**/mapper/xml/*.xml</include>
+	        </includes>
+	    </resource>
+	</resources>
   	<plugins>
   		<!-- maven插件 -->
   		<plugin>

@@ -10,7 +10,12 @@ public enum ResultConstants {
 	//成功
 	SUCCESS_CODE(0,"操作成功"),
 	//未登录或登录超时
-	NO_LOGIN(1,"用户未登录或登录超时");
+	NO_LOGIN(1,"用户未登录或登录超时"),
+	//登录成功
+	LOGIN_SUCCESS(0,"登录成功");
+	
+	//登录验证失败
+	public static int LOGIN_CHECK_FAIL = 2;
 	
 	private ResultConstants(int code,String msg) {
 		this.code = code;

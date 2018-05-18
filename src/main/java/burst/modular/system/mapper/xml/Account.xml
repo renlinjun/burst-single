@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="burst.modular.system.mapper.AccountMapper">
+
+    <!-- 开启二级缓存 -->
+   <!-- <cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="burst.modular.system.entity.Account">
+        <result column="ID" property="id" />
+        <result column="ACCOUNT_NAME" property="accountName" />
+        <result column="PASSWD" property="passwd" />
+        <result column="USER_INFO_ID" property="userInfoId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, ACCOUNT_NAME, PASSWD, USER_INFO_ID
+    </sql>
+    
+    <select id="selectAccount" resultType="map">
+		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from account A  where a.ACCOUNT_NAME=#{user_name} AND A.PASSWD=#{password}
+    </select>
+    
+
+</mapper>
