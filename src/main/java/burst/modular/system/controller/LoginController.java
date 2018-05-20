@@ -34,6 +34,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/login")
 	public ResponseData login(@RequestBody RequestData requestData) {
+		//判断用户名密码是否合法
 		boolean flag = accountService.isLegal(requestData);
 		if(flag) {
 			String userId = requestData.getData().getString("user_id");

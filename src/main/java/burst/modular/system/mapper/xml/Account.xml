@@ -18,9 +18,13 @@
         ID, ACCOUNT_NAME, PASSWD, USER_INFO_ID
     </sql>
     
-    <select id="selectAccount" resultType="map">
+    <select id="selectAccount" parameterType="map" resultType="map">
 		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from account A  where a.ACCOUNT_NAME=#{user_name} AND A.PASSWD=#{password}
     </select>
+ <!--    
+    <update id="updateAccount" parameterMap="">
+    
+    </update> -->
     
 
 </mapper>

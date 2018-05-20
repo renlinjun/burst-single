@@ -3,6 +3,7 @@
   <groupId>burst</groupId>
   <artifactId>burst-single</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
   
   <properties>
   	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -23,12 +24,6 @@
   		<groupId>org.springframework.boot</groupId>
   		<artifactId>spring-boot-starter-web</artifactId>
   	</dependency>
-  	<!-- mybatis-plus -->
-	<dependency>
-	    <groupId>com.baomidou</groupId>
-	    <artifactId>mybatis-plus-boot-starter</artifactId>
-	    <version>2.2.0</version>
-	</dependency>
   	<dependency>
   		<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-data-redis</artifactId>
@@ -92,7 +87,7 @@
 	<resources>
 	    <resource>
 	        <directory>src/main/java</directory>
-	        <filtering>false</filtering>
+	        <filtering>true</filtering>
 	        <includes>
 	            <include>**/mapper/xml/*.xml</include>
 	        </includes>
@@ -100,7 +95,7 @@
 	</resources>
   	<plugins>
   		<!-- maven插件 -->
-  		<plugin>
+  		<!-- <plugin>
   			<groupId>org.apache.maven.plugins</groupId>
   			<artifactId>maven.compiler.plugin</artifactId>
   			<version>3.1</version>
@@ -109,10 +104,28 @@
   				<target>${java.version}</target>
   			</configuration>
   		</plugin>
+  		-->
+  		<plugin>
+  			<groupId>org.apache.maven.plugins</groupId>
+  			<artifactId>maven-war-plugin</artifactId>
+  			<configuration>
+  				<source>${java.version}</source>
+  				<target>${java.version}</target>
+  				<webResources>
+  					<webResource>
+  						<directory>src/main/resources</directory>
+  						<targetPath>target/classes</targetPath>
+  					</webResource>
+  				</webResources>
+  			</configuration>
+  		</plugin>
   		<!-- spring boot maven插件，用于打包spring boot -->
   		<plugin>
   			<groupId>org.springframework.boot</groupId>
   			<artifactId>spring-boot-maven-plugin</artifactId>
+  			<configuration>
+  				
+  			</configuration>
   		</plugin>
   	</plugins>
   </build>

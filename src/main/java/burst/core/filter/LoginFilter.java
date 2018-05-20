@@ -44,6 +44,7 @@ public class LoginFilter implements Filter {
 		//如果直接调用用户登录，则不进行权限验证
 		if(httpRequest.getRequestURI().endsWith(authProperties.getLoginUrl())) {
 			filterChain.doFilter(request, response);
+			return;
 		}
 		
 		//只获取验证权限请求头的第一个Authorization
@@ -57,6 +58,7 @@ public class LoginFilter implements Filter {
 		//如果token验证通过，则执行下一个过滤器，否则返回信息
 		if(isTokenApprove) {
 			filterChain.doFilter(request, response);
+			return;
 		}else {
 			response.setCharacterEncoding("UTF-8");    
 			response.setContentType("application/json; charset=utf-8");
