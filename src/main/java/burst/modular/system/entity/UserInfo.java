@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 人员信息表
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
 public class UserInfo extends Model<UserInfo> {
 
@@ -26,7 +26,7 @@ public class UserInfo extends Model<UserInfo> {
     /**
      * 人员编号
      */
-    private String userId;
+    private String userCode;
 
     /**
      * 人员姓名
@@ -49,9 +49,14 @@ public class UserInfo extends Model<UserInfo> {
     private String age;
 
     /**
+     * 职称
+     */
+    private String title;
+
+    /**
      * 人员信息状态(Y:可用，N：删除)
      */
-    private String delFlag;
+    private String status;
 
     public String getId() {
         return id;
@@ -60,12 +65,12 @@ public class UserInfo extends Model<UserInfo> {
     public void setId(String id) {
         this.id = id;
     }
-    public String getUserId() {
-        return userId;
+    public String getUserCode() {
+        return userCode;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserCode(String userCode) {
+        this.userCode = userCode;
     }
     public String getUserName() {
         return userName;
@@ -95,12 +100,19 @@ public class UserInfo extends Model<UserInfo> {
     public void setAge(String age) {
         this.age = age;
     }
-    public String getDelFlag() {
-        return delFlag;
+    public String getTitle() {
+        return title;
     }
 
-    public void setDelFlag(String delFlag) {
-        this.delFlag = delFlag;
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
@@ -112,12 +124,13 @@ public class UserInfo extends Model<UserInfo> {
     public String toString() {
         return "UserInfo{" +
         "id=" + id +
-        ", userId=" + userId +
+        ", userCode=" + userCode +
         ", userName=" + userName +
         ", email=" + email +
         ", sex=" + sex +
         ", age=" + age +
-        ", delFlag=" + delFlag +
+        ", title=" + title +
+        ", status=" + status +
         "}";
     }
 }

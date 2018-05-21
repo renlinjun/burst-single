@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="burst.modular.system.mapper.RoleTypeMapper">
+<mapper namespace="burst.modular.system.mapper.PermissionMapper">
     <!-- 开启二级缓存 -->
     <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="burst.modular.system.entity.RoleType">
+    <resultMap id="BaseResultMap" type="burst.modular.system.entity.Permission">
         <id column="ID" property="id" />
-        <result column="ROLE_TYPE_ID" property="roleTypeId" />
-        <result column="ROLE_TYPE_NAME" property="roleTypeName" />
-        <result column="ROLE_DESC" property="roleDesc" />
+        <result column="PERMISSION_NAME" property="permissionName" />
+        <result column="PERMISSION_CODE" property="permissionCode" />
+        <result column="PERMISSION_TYPE_ID" property="permissionTypeId" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, ROLE_TYPE_ID, ROLE_TYPE_NAME, ROLE_DESC
+        ID, PERMISSION_NAME, PERMISSION_CODE, PERMISSION_TYPE_ID
     </sql>
 
 </mapper>

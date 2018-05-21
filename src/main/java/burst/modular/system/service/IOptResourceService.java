@@ -1,28 +1,28 @@
 package burst.modular.system.service;
 
-import burst.modular.system.entity.RoleType;
+import burst.modular.system.entity.OptResource;
 import com.baomidou.mybatisplus.service.IService;
 import burst.core.model.RequestData;
 import java.util.List;
 
 /**
  * <p>
- * 角色类型表 服务类
+ * 功能操作资源表 服务类
  * </p>
  *
  * @author renlinjun
  * @since 2018-05-21
  */
-public interface IRoleTypeService extends IService<RoleType> {
+public interface IOptResourceService extends IService<OptResource> {
 
 	
 
-	//添加RoleType
+	//添加OptResource
 	public void add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新
 	public void update(RequestData requestData);
 	//查询
-	public List<RoleType> list(RequestData requestData);
+	public List<OptResource> list(RequestData requestData);
 }

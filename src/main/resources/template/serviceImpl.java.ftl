@@ -1,11 +1,11 @@
 package ${package.ServiceImpl};
 
 import ${package.Entity}.${entity};
-import ${package.Mapper}.${table.mapperName};
 import ${package.Service}.${table.serviceName};
 import ${superServiceImplClassPackage};
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Autowired;
+import  ${package.Mapper}.${table.mapperName} 
 import burst.core.model.RequestData;
 import java.util.List;
 
@@ -25,8 +25,6 @@ open class ${table.serviceImplName} : ${superServiceImplClass}<${table.mapperNam
 <#else>
 public class ${table.serviceImplName} extends ${superServiceImplClass}<${table.mapperName}, ${entity}> implements ${table.serviceName} {
 	
-	@Autowired
-	private ${table.mapperName} ${table.mapperName?uncap_first}; 
 	
 	//添加${entity}
 	public void add(RequestData requestData) {};

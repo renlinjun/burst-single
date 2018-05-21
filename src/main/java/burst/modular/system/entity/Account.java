@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 系统账户表
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
 public class Account extends Model<Account> {
 
@@ -20,6 +20,7 @@ public class Account extends Model<Account> {
     /**
      * 账号主键
      */
+    @TableId(value = "ID", type = IdType.ID_WORKER)
     private String id;
 
     /**

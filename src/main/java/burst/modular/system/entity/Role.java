@@ -7,11 +7,11 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 角色表
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
 public class Role extends Model<Role> {
 

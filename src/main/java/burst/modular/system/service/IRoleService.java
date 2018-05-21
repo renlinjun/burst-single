@@ -5,17 +5,14 @@ import com.baomidou.mybatisplus.service.IService;
 import burst.core.model.RequestData;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
-
 /**
  * <p>
- *  服务类
+ * 角色表 服务类
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
-@Service
 public interface IRoleService extends IService<Role> {
 
 	

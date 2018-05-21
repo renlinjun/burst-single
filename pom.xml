@@ -100,9 +100,9 @@
 	    <resource>
 	    	<directory>src/main/resources</directory>
 	    	<filtering>false</filtering>
-	    	<excludes>
+	    	<!-- <excludes>
 	    		<exclude>**/template/*</exclude>
-	    	</excludes>
+	    	</excludes> -->
 	    </resource>
 	</resources>
   	<plugins>

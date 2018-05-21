@@ -7,23 +7,35 @@ import java.io.Serializable;
 
 /**
  * <p>
- * 
+ * 角色类型表
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
 public class RoleType extends Model<RoleType> {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * 主键ID
+     */
     @TableId(value = "ID", type = IdType.ID_WORKER)
     private String id;
 
+    /**
+     * 角色类型ID
+     */
     private String roleTypeId;
 
+    /**
+     * 角色类型名称
+     */
     private String roleTypeName;
 
+    /**
+     * 类型描述
+     */
     private String roleDesc;
 
     public String getId() {

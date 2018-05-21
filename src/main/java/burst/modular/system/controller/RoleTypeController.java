@@ -13,11 +13,11 @@ import burst.modular.system.entity.RoleType;
 
 /**
  * <p>
- *  前端控制层
+ * 角色类型表 前端控制层
  * </p>
  *
  * @author renlinjun
- * @since 2018-05-16
+ * @since 2018-05-21
  */
 @RestController
 @RequestMapping("/system/roleType")

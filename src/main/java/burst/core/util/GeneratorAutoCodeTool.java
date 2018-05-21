@@ -38,10 +38,10 @@ public class GeneratorAutoCodeTool {
 		customConfig();
 		mpg.execute();
 	}
-	
+	// 全局配置
 	private void globalConfig() {
 		mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-		 // 全局配置
+		 
         GlobalConfig gc = new GlobalConfig();
         gc.setOutputDir("D://code");
         gc.setFileOverride(true);
@@ -60,9 +60,9 @@ public class GeneratorAutoCodeTool {
         gc.setControllerName("%sController");
         mpg.setGlobalConfig(gc);
 	}
-	
+	 // 数据源配置
 	private void dataSourceConfig() {
-		 // 数据源配置
+		
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setTypeConvert(new MySqlTypeConvert(){
@@ -77,7 +77,7 @@ public class GeneratorAutoCodeTool {
         dsc.setDriverName("com.mysql.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("123456");
-        dsc.setUrl("jdbc:mysql://localhost:3306/system?characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/burst?characterEncoding=utf8");
         mpg.setDataSource(dsc);
 	}
 
