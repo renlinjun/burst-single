@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import burst.core.auth.JwtToken;
 import burst.core.model.RequestData;
 
-@RestController
-@RequestMapping(value="/api")
+/*@RestController
+@RequestMapping(value="/api")*/
 public class TestRest {
 
 	@Autowired
@@ -18,11 +18,11 @@ public class TestRest {
 	
 	@RequestMapping(value="/reqData",method=RequestMethod.POST)
 	public String test(@RequestBody RequestData requestData) {
-		return jwtToken.createToken();
+		return jwtToken.createToken("ren");
 	}
 	@RequestMapping(value="/login",method=RequestMethod.POST)
 	public String login(@RequestBody RequestData requestData) {
-		return jwtToken.createToken();
+		return jwtToken.createToken("ren");
 	}
 	
 	@RequestMapping(value="/getData",method=RequestMethod.POST)
