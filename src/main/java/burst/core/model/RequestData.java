@@ -22,4 +22,14 @@ public class RequestData {
 	public String toString() {
 		return data.toJSONString();
 	}
+	
+	/**
+	 * 将请求中的数据转换为相应的实体对象
+	 * @return
+	 */
+	public <T> T parseObj(Class<T> clazz) {
+		JSONObject json = this.getData();
+		
+		return null;
+	}
 }

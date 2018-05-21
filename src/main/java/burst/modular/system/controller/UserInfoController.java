@@ -28,7 +28,9 @@ public class UserInfoController {
 
 	//添加UserInfo
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {};
+	public void add(RequestData requestData) {
+		userInfoService.add(requestData);
+	};
 	//删除
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};

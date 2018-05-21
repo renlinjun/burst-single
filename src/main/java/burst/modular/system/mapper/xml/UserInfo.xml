@@ -20,5 +20,10 @@
     <sql id="Base_Column_List">
         ID, USER_CODE, USER_NAME, EMAIL, SEX, AGE, TITLE, STATUS
     </sql>
+    
+    <insert id="addUser" parameterType="Map" >
+    	insert into user_info(ID,USER_CODE,USER_NAME,EMAIL,SEX,AGE,TITLE,STATUS) 
+    	value(#{id},#{user_code},#{user_name},#{email},#{sex},#{age},#{title},#{status})
+    </insert>
 
 </mapper>

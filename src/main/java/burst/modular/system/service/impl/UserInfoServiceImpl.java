@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import burst.core.model.RequestData;
@@ -24,7 +25,10 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 	
 	
 	//添加UserInfo
-	public void add(RequestData requestData) {};
+	public void add(RequestData requestData) {
+		JSONObject data = requestData.getData();
+		baseMapper.addUser(data);
+	};
 	//删除
 	public void delete(RequestData requestData) {};
 	//更新

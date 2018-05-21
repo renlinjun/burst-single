@@ -43,10 +43,14 @@ public class ${table.controllerName} {
 	@Autowired
 	private ${table.serviceName} ${table.serviceName?keep_after("I")?uncap_first};
 
-	//添加${entity}
+	//添加
 	@RequestMapping(value="/add")
 	public void add(RequestData requestData) {};
-	//删除
+	/**
+	  删除
+	 @作者： ${author}
+	 @时间： ${date}
+	 */
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};
 	//更新
