@@ -1,6 +1,7 @@
 package burst.modular.system.controller;
 
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -28,7 +29,7 @@ public class UserInfoController {
 
 	//添加UserInfo
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {
+	public void add(@RequestBody RequestData requestData) {
 		userInfoService.add(requestData);
 	};
 	//删除

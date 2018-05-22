@@ -64,16 +64,8 @@ public class ${entity} implements Serializable {
     @TableId("${field.name}")
 </#if>
 <#-- 普通字段 -->
-<#elseif field.fill??>
 <#-- -----   存在字段填充设置   ----->
-<#if field.convert>
-    @TableField(value = "${field.name}", fill = FieldFill.${field.fill})
-<#else>
-    @TableField(fill = FieldFill.${field.fill})
-</#if>
-<#elseif field.convert>
-    @TableField("${field.name}")
-</#if>
+
 <#-- 乐观锁注解 -->
 <#if (versionFieldName!"") == field.name>
     @Version
@@ -82,6 +74,7 @@ public class ${entity} implements Serializable {
 <#if (logicDeleteFieldName!"") == field.name>
     @TableLogic
 </#if>
+	@TableField("${field.name}")
     private ${field.propertyType} ${field.propertyName};
 </#list>
 <#------------  END 字段循环遍历  ---------->

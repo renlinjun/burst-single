@@ -1,9 +1,13 @@
 package burst.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
+
+import javax.validation.constraints.NotEmpty;
+
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * <p>
@@ -13,6 +17,7 @@ import java.io.Serializable;
  * @author renlinjun
  * @since 2018-05-21
  */
+//@TableName(value="USER_INFO")
 public class UserInfo extends Model<UserInfo> {
 
     private static final long serialVersionUID = 1L;
@@ -20,17 +25,19 @@ public class UserInfo extends Model<UserInfo> {
     /**
      * 主键ID
      */
-    @TableId(value = "ID", type = IdType.ID_WORKER)
+    @TableId(value = "ID", type = IdType.UUID)
     private String id;
 
     /**
      * 人员编号
      */
+    @NotEmpty
     private String userCode;
 
     /**
      * 人员姓名
      */
+    @NotEmpty
     private String userName;
 
     /**
@@ -39,7 +46,7 @@ public class UserInfo extends Model<UserInfo> {
     private String email;
 
     /**
-     * 性别(0:男，1：女，3:其它)
+     * 性别(0:男，1：女，2:其它)
      */
     private String sex;
 

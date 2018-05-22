@@ -1,10 +1,11 @@
 package burst.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 
 /**
  * <p>
@@ -14,6 +15,7 @@ import java.io.Serializable;
  * @author renlinjun
  * @since 2018-05-21
  */
+@TableName("permission_menu")
 public class PermissionMenu extends Model<PermissionMenu> {
 
     private static final long serialVersionUID = 1L;

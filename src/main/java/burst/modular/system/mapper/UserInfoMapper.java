@@ -16,6 +16,6 @@ import burst.modular.system.entity.UserInfo;
  */
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 	
-	public void addUser(Map<String,Object> map);
+	public void addUser(UserInfo userInfo);
 
 }

@@ -2,13 +2,14 @@ package burst.modular.system.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import burst.core.model.RequestData;
 import burst.modular.system.entity.UserInfo;
+import burst.modular.system.mapper.AccountMapper;
 import burst.modular.system.mapper.UserInfoMapper;
 import burst.modular.system.service.IUserInfoService;
 
@@ -23,11 +24,13 @@ import burst.modular.system.service.IUserInfoService;
 @Service
 public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> implements IUserInfoService {
 	
+	@Autowired
+	private AccountMapper accountMapper;
 	
 	//添加UserInfo
 	public void add(RequestData requestData) {
-		JSONObject data = requestData.getData();
-		baseMapper.addUser(data);
+		UserInfo userInfo = requestData.parseObj(UserInfo.class);
+		baseMapper.insert(userInfo);
 	};
 	//删除
 	public void delete(RequestData requestData) {};

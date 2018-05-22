@@ -27,6 +27,7 @@ mybatis-plus:
   typeAliasesPackage: burst.modular.*.entity
   global-config: 
     cache-enabled: false
+    db-column-underline: true
   
 ---
 spring: 
