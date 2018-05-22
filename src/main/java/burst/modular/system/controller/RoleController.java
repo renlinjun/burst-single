@@ -1,14 +1,18 @@
 package burst.modular.system.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
-import burst.modular.system.service.IRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
-import burst.core.model.RequestData;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import burst.core.config.ResultConstants;
+import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
 import burst.modular.system.entity.Role;
+import burst.modular.system.service.IRoleService;
 
 
 /**
@@ -28,7 +32,15 @@ public class RoleController {
 
 	//添加Role
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {};
+	public ResponseData add(@RequestBody RequestData requestData) throws Exception {
+		throw new Exception();
+		/*int result = roleService.add(requestData);
+		if(result<=0) {
+			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		}
+		return new ResponseData(ResultConstants.SUCCESS_CODE);*/
+		
+	};
 	//删除
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};

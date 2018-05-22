@@ -18,9 +18,9 @@ public interface IUserInfoService extends IService<UserInfo> {
 	
 
 	//添加UserInfo
-	public void add(RequestData requestData);
+	public int add(RequestData requestData);
 	//删除
-	public void delete(RequestData requestData);
+	public int delete(RequestData requestData);
 	//更新
 	public void update(RequestData requestData);
 	//查询

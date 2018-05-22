@@ -18,7 +18,7 @@ public interface IRoleService extends IService<Role> {
 	
 
 	//添加Role
-	public void add(RequestData requestData);
+	public int add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新

@@ -20,7 +20,7 @@ public class RoleType extends Model<RoleType> {
     /**
      * 主键ID
      */
-    @TableId(value = "ID", type = IdType.ID_WORKER)
+    @TableId(value = "ID", type = IdType.UUID)
     private String id;
 
     /**

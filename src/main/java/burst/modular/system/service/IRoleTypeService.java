@@ -18,7 +18,7 @@ public interface IRoleTypeService extends IService<RoleType> {
 	
 
 	//添加RoleType
-	public void add(RequestData requestData);
+	public int add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新

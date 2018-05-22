@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import burst.modular.system.service.IUserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+
 import java.util.List;
 import burst.modular.system.entity.UserInfo;
 
@@ -29,8 +33,14 @@ public class UserInfoController {
 
 	//添加UserInfo
 	@RequestMapping(value="/add")
-	public void add(@RequestBody RequestData requestData) {
-		userInfoService.add(requestData);
+	public ResponseData add(@RequestBody RequestData requestData) {
+		int result = userInfoService.add(requestData);
+		if(result>0) {
+			return new ResponseData(ResultConstants.SUCCESS_CODE);
+		}
+		
+		return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		
 	};
 	//删除
 	@RequestMapping(value="/delete")

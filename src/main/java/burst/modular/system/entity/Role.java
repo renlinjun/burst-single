@@ -2,6 +2,9 @@ package burst.modular.system.entity;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -23,12 +26,13 @@ public class Role extends Model<Role> {
     /**
      * 主键ID
      */
-    @TableId(value = "ID", type = IdType.ID_WORKER)
+    @TableId(value = "ID", type = IdType.UUID)
     private String id;
 
     /**
      * 角色代码，唯一
      */
+    @NotBlank
     private String roleCode;
 
     /**

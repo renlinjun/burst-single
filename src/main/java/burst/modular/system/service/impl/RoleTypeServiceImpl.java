@@ -24,7 +24,11 @@ public class RoleTypeServiceImpl extends ServiceImpl<RoleTypeMapper, RoleType> i
 	
 	
 	//添加RoleType
-	public void add(RequestData requestData) {};
+	public int add(RequestData requestData) {
+		RoleType roleType = requestData.parseObj(RoleType.class);
+		int result = baseMapper.insert(roleType);
+		return result;
+	};
 	//删除
 	public void delete(RequestData requestData) {};
 	//更新

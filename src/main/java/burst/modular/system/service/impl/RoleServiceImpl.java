@@ -24,7 +24,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
 	
 	
 	//添加Role
-	public void add(RequestData requestData) {};
+	public int add(RequestData requestData) {
+		Role role = requestData.parseObj(Role.class);
+		int result = baseMapper.insert(role);
+		return result;
+		
+	};
 	//删除
 	public void delete(RequestData requestData) {};
 	//更新
