@@ -8,7 +8,7 @@ package burst.core.config;
 public enum ResultConstants {
 	
 	//成功
-	SUCCESS_CODE(0,"操作成功"),
+	SUCCESS_RESPONSE(0,"操作成功"),
 	//未登录或登录超时
 	NO_LOGIN(1,"用户未登录或登录超时"),
 	//登录成功

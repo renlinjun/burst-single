@@ -18,7 +18,7 @@ public interface IMenuService extends IService<Menu> {
 	
 
 	//添加Menu
-	public void add(RequestData requestData);
+	public int add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新

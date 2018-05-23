@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import burst.modular.system.service.IMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+
 import java.util.List;
 import burst.modular.system.entity.Menu;
 
@@ -28,7 +32,15 @@ public class MenuController {
 
 	//添加Menu
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {};
+	public ResponseData add(RequestData requestData) {
+		int result = menuService.add(requestData);
+		//添加失败
+		if(result<=1) {
+			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		}
+		//添加成功
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+	};
 	//删除
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};

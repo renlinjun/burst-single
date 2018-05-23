@@ -1,7 +1,11 @@
 package burst.modular.system.mapper;
 
-import burst.modular.system.entity.UserRole;
+import java.util.List;
+import java.util.Map;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import burst.modular.system.entity.UserRole;
 
 /**
  * <p>
@@ -12,5 +16,8 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-05-21
  */
 public interface UserRoleMapper extends BaseMapper<UserRole> {
+	
+	//批量添加
+	public int addBatch(List<UserRole> dataList);
 
 }

@@ -33,12 +33,11 @@ public class RoleController {
 	//添加Role
 	@RequestMapping(value="/add")
 	public ResponseData add(@RequestBody RequestData requestData) throws Exception {
-		throw new Exception();
-		/*int result = roleService.add(requestData);
+		int result = roleService.add(requestData);
 		if(result<=0) {
 			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
 		}
-		return new ResponseData(ResultConstants.SUCCESS_CODE);*/
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
 		
 	};
 	//删除

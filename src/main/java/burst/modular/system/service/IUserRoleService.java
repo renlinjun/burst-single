@@ -18,7 +18,9 @@ public interface IUserRoleService extends IService<UserRole> {
 	
 
 	//添加UserRole
-	public void add(RequestData requestData);
+	public int add(RequestData requestData);
+	//批量添加
+	public int addBatch(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新

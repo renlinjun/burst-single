@@ -6,7 +6,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import burst.modular.system.service.IUserRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+
 import java.util.List;
 import burst.modular.system.entity.UserRole;
 
@@ -28,16 +32,22 @@ public class UserRoleController {
 
 	//添加UserRole
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {};
+	public ResponseData add(RequestData requestData) {
+		int result = userRoleService.add(requestData);
+		if(result<=0) {
+			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		}
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+	}
 	//删除
 	@RequestMapping(value="/delete")
-	public void delete(RequestData requestData) {};
+	public void delete(RequestData requestData) {}
 	//更新
 	@RequestMapping(value="/update")
-	public void update(RequestData requestData) {};
+	public void update(RequestData requestData) {}
 	//查询
 	@RequestMapping(value="/list")
 	public List<UserRole> list(RequestData requestData) {
 		return null;
-	};
+	}
 }

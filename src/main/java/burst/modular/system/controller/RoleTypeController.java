@@ -37,7 +37,7 @@ public class RoleTypeController {
 		if(result<=0) {
 			return new ResponseData(ResultConstants.OPT_FAIL,"添加失败");
 		}
-		return new ResponseData(ResultConstants.SUCCESS_CODE);
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
 	};
 	//删除
 	@RequestMapping(value="/delete")

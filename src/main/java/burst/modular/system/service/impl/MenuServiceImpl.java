@@ -24,7 +24,11 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 	
 	
 	//添加Menu
-	public void add(RequestData requestData) {};
+	public int add(RequestData requestData) {
+		Menu meun = requestData.parseObj(Menu.class);
+		int result = baseMapper.insert(meun);
+		return result;
+	};
 	//删除
 	public void delete(RequestData requestData) {};
 	//更新

@@ -36,7 +36,7 @@ public class UserInfoController {
 	public ResponseData add(@RequestBody RequestData requestData) {
 		int result = userInfoService.add(requestData);
 		if(result>0) {
-			return new ResponseData(ResultConstants.SUCCESS_CODE);
+			return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
 		}
 		
 		return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
