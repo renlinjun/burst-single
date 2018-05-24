@@ -1,14 +1,14 @@
 package burst.modular.system.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
-import burst.modular.system.service.IOptResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import burst.core.model.RequestData;
-import java.util.List;
-import burst.modular.system.entity.OptResource;
+import burst.core.model.ResponseData;
+import burst.modular.system.service.IOptResourceService;
 
 
 /**
@@ -34,10 +34,15 @@ public class OptResourceController {
 	public void delete(RequestData requestData) {};
 	//更新
 	@RequestMapping(value="/update")
-	public void update(RequestData requestData) {};
-	//查询
+	public void update(RequestData requestData) {}
+	
+	/**
+	 * 查询
+	 * @param requestData
+	 * @return
+	 */
 	@RequestMapping(value="/list")
-	public List<OptResource> list(RequestData requestData) {
-		return null;
+	public ResponseData list(@RequestBody RequestData requestData) {
+		return optResourceService.list(requestData);
 	};
 }

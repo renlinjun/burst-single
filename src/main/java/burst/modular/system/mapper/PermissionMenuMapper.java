@@ -1,7 +1,10 @@
 package burst.modular.system.mapper;
 
-import burst.modular.system.entity.PermissionMenu;
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+import burst.modular.system.entity.PermissionMenu;
 
 /**
  * <p>
@@ -12,5 +15,12 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @since 2018-05-21
  */
 public interface PermissionMenuMapper extends BaseMapper<PermissionMenu> {
+	
+	/**
+	 * 为资源添加菜单
+	 * @param permissionMenu
+	 * @return
+	 */
+	public int assignMenu(List<PermissionMenu> permissionMenu);
 
 }

@@ -14,5 +14,14 @@
     <sql id="Base_Column_List">
         MENU_iD AS menuId, PERMISSION_ID
     </sql>
+    
+    <!-- 批量插入权限对应的资源 -->
+    <insert id="assignMenu" parameterType="List">
+    	insert into PERMISSION_MENU(PERMISSION_ID,MENU_ID)
+    	values 
+    	<foreach collection="list" item="pm" separator="," index="index">
+    		(#{permissionId},#{menuId})
+    	</foreach>
+    </insert>
 
 </mapper>

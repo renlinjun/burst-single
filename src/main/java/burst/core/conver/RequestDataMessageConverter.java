@@ -47,14 +47,24 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Re
 		RequestData requestData = new RequestData();
 		InputStream is = inputMessage.getBody();	
 		byte[] data = new byte[is.available()];
-		is.read(data);
-		String dataStr = new String(data, "UTF-8");
-		JSONObject json = JSONObject.parseObject(dataStr);
-		if(json.containsKey("data")) {
-			requestData.setData(json.getJSONObject("data"));
-		}else {
+		JSONObject json = null;
+		//判断请求内容中是否有数据
+		if(data.length<=0) {
+			//如果没有请求数据则放一个空的JSONObject
+			json = new JSONObject();
 			requestData.setData(json);
+		}else {
+			//否则读取请求中的请求数据
+			is.read(data);
+			String dataStr = new String(data, "UTF-8");
+			json = JSONObject.parseObject(dataStr);
+			if(json.containsKey("data")) {
+				requestData.setData(json.getJSONObject("data"));
+			}else {
+				requestData.setData(json);
+			}
 		}
+		
 		return requestData;
 	}
 

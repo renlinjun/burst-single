@@ -2,6 +2,8 @@ package burst.modular.system.entity;
 
 import java.io.Serializable;
 
+import org.apache.ibatis.type.Alias;
+
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -16,6 +18,7 @@ import com.baomidou.mybatisplus.enums.IdType;
  * @since 2018-05-21
  */
 @TableName("opt_resource")
+@Alias(value="optResource")
 public class OptResource extends Model<OptResource> {
 
     private static final long serialVersionUID = 1L;

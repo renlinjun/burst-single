@@ -16,7 +16,28 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, RESOURCE_NAME, RESOURCE_URL, RESOURCE_CODE, IS_LOGIN, IS_SIGN
+        ID as id, RESOURCE_NAME as resourceName, RESOURCE_URL as resourceUrl, RESOURCE_CODE as resourceCode, USE_LOGIN as useLogin, IS_SIGN as isSign
     </sql>
+    
+    <!-- 查询资源列表 -->
+    <select id="queryResource" parameterType="java.util.Map" resultType="optResource">
+    	select 
+    	A.ID as id,
+    	A.RESOURCE_NAME as resourceName,
+    	 A.RESOURCE_URL as resourceUrl,
+    	 A.RESOURCE_CODE as resourceCode,
+    	 A.USE_LOGIN AS useLogin,
+    	 A.IS_SIGN AS isSign
+    	 from OPT_RESOURCE A
+    	left join PERMISSION_RESOURCE B
+    	on A.id = B.RESOURCE_ID
+		<where>
+			<if test="permissionId!=null">
+				and B.PERMISSION_ID = #{permissionId}
+			</if>
+		</where>
+		
+    	
+    </select>
 
 </mapper>

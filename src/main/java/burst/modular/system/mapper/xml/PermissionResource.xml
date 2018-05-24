@@ -14,5 +14,18 @@
     <sql id="Base_Column_List">
         PERMISSION_ID, RESOURCE_ID
     </sql>
+    
+    <!-- 批量插入权限对应的资源 -->
+    <insert id="addBatch" parameterType="List">
+    	insert into PERMISSION_RESOURCE(permission_id,resource_id)
+    	values 
+    	<foreach collection="list" item="pr" separator="," index="index">
+    		(#{permissionId},#{resourceId})
+    	</foreach>
+    </insert>
+    
+    <delete id="removeAllByPermissionId" parameterType="java.lang.String">
+    	delete from PERMISSION_RESOURCE where permission_id =#{permissionId}
+    </delete>
 
 </mapper>

@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
+import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
 import burst.modular.system.entity.Permission;
 import burst.modular.system.mapper.PermissionMapper;
 import burst.modular.system.service.IPermissionService;
@@ -24,7 +26,16 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Permiss
 	
 	
 	//添加Permission
-	public void add(RequestData requestData) {};
+	public ResponseData add(RequestData requestData) {
+		Permission permission = requestData.parseObj(Permission.class);
+		int result = baseMapper.insert(permission);
+		
+		if(result<0) {
+			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		}
+		
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+	}
 	//删除
 	public void delete(RequestData requestData) {};
 	//更新
