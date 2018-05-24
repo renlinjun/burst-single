@@ -15,10 +15,10 @@
         USER_ID, ROLE_ID
     </sql>
     
-    <insert id="addBatch" parameterType="List">
+    <insert id="addBatch" parameterType="list">
     	insert into USER_ROLE(ROLE_ID,USER_ID) VALUES 
-    	<foreach collection="list" open="(" close=")" item="it">
-    		#{ROLE_ID},#{USER_ID}
+    	<foreach collection="list"  item="it" separator="," index="index">
+    		(#{it.roleId},#{it.userId})
     	</foreach>
     	
     </insert>

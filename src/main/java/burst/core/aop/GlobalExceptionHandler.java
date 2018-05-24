@@ -2,6 +2,8 @@ package burst.core.aop;
 
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,7 +20,9 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(Exception.class)
-	public ResponseData exceptionHandler() {
+	public ResponseData exceptionHandler(HttpServletRequest request,  
+            Exception exception) {
+		exception.printStackTrace();
 		System.out.println("执行拦截器");
 		return new ResponseData(ResultConstants.EXCEPTION_CODE, "系统异常");
 	}
@@ -28,7 +32,9 @@ public class GlobalExceptionHandler {
 	 * @return
 	 */
 	@ExceptionHandler(SQLException.class)
-	public ResponseData sqlExceptionHandler() {
+	public ResponseData sqlExceptionHandler(HttpServletRequest request,  
+            Exception exception) {
+		exception.printStackTrace();
 		return new ResponseData(ResultConstants.EXCEPTION_CODE, "数据操作异常");
 	}
 }

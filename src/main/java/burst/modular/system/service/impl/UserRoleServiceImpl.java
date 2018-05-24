@@ -52,7 +52,6 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 			userRole.setUserId(userId);
 			userRoles.add(userRole);
 		}
-		
 		int result = baseMapper.addBatch(userRoles);
 		
 		return result;

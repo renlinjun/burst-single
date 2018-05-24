@@ -1,6 +1,7 @@
 package burst.modular.system.entity;
 
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
@@ -13,14 +14,14 @@ import java.io.Serializable;
  * @author renlinjun
  * @since 2018-05-21
  */
-public class UserRole extends Model<UserRole> {
+@TableName("USER_ROLE")
+public class UserRole {
 
     private static final long serialVersionUID = 1L;
 
     /**
      * 人员ID
      */
-    @TableId(value = "USER_ID", type = IdType.ID_WORKER)
     private String userId;
 
     /**
@@ -41,11 +42,6 @@ public class UserRole extends Model<UserRole> {
 
     public void setRoleId(String roleId) {
         this.roleId = roleId;
-    }
-
-    @Override
-    protected Serializable pkVal() {
-        return this.userId;
     }
 
     @Override

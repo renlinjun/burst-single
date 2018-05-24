@@ -1,6 +1,7 @@
 package burst.modular.system.controller;
 
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class UserRoleController {
 
 	//添加UserRole
 	@RequestMapping(value="/add")
-	public ResponseData add(RequestData requestData) {
+	public ResponseData add(@RequestBody RequestData requestData) {
 		int result = userRoleService.add(requestData);
 		if(result<=0) {
 			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
@@ -49,5 +50,14 @@ public class UserRoleController {
 	@RequestMapping(value="/list")
 	public List<UserRole> list(RequestData requestData) {
 		return null;
+	}
+	
+	@RequestMapping(value="/addBatch")
+	public ResponseData addBatch(@RequestBody RequestData requestData) {
+		int result = userRoleService.addBatch(requestData);
+		if(result<0) {
+			return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+		}
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
 	}
 }
