@@ -19,6 +19,7 @@ import burst.core.auth.JwtToken;
 import burst.core.config.AuthProperties;
 import burst.core.config.ResultConstants;
 import burst.core.model.ResponseData;
+import cn.hutool.http.HttpRequest;
 import cn.hutool.json.JSONUtil;
 
 @WebFilter(urlPatterns="/*")
@@ -41,14 +42,18 @@ public class LoginFilter implements Filter {
 			throws IOException, ServletException {
 		
 		HttpServletRequest httpRequest = ((HttpServletRequest)request);
+		
+		HttpRequest request2 = (HttpRequest)request;
 		//如果直接调用用户登录，则不进行权限验证
 		if(httpRequest.getRequestURI().endsWith(authProperties.getLoginUrl())) {
 			filterChain.doFilter(request, response);
 			return;
-		}
+		} 
+		
 		
 		//只获取验证权限请求头的第一个Authorization
 		boolean isTokenApprove = false;
+		String header = httpRequest.getHeader("Authorization");
 		Enumeration<String> headers = httpRequest.getHeaders("Authorization");
 		while(headers.hasMoreElements()) {
 			String token = headers.nextElement();

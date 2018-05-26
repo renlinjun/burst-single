@@ -51,8 +51,11 @@ public class JwtToken {
 	 * 		验证结果，通过返回true，否则返回false
 	 */
 	public boolean verifyToken(String token) {
+		
 		String secret = authProperties.getSecret();
+		
 		try {
+		//验证token是否合法
 		Claims claim = Jwts.parser()
 			.setSigningKey(secret)
 			.parseClaimsJws(token)
