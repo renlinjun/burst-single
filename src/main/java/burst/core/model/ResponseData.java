@@ -13,9 +13,10 @@ import burst.core.config.ResultConstants;
 public class ResponseData {
 	private int code;
 	private String msg;
-	private JSONObject data;
+	//private JSONObject data;
+	private Object data;
 	
-	public ResponseData(int code,String msg,JSONObject data) {
+	public ResponseData(int code,String msg,Object data) {
 		this.data = data;
 		this.code = code;
 		this.msg = msg;
@@ -24,7 +25,7 @@ public class ResponseData {
 		this(code,msg,null);
 	}
 	
-	public ResponseData(ResultConstants result,JSONObject data) {
+	public ResponseData(ResultConstants result,Object data) {
 		this.data = data;
 		this.code = result.getCode();
 		this.msg = result.getMsg();
@@ -47,10 +48,10 @@ public class ResponseData {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public JSONObject getData() {
+	public Object getData() {
 		return data;
 	}
-	public void setData(JSONObject data) {
+	public void setData(Object data) {
 		this.data = data;
 	}
 	

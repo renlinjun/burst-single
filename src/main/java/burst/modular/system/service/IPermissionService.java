@@ -1,9 +1,12 @@
 package burst.modular.system.service;
 
-import burst.modular.system.entity.Permission;
-import com.baomidou.mybatisplus.service.IService;
-import burst.core.model.RequestData;
 import java.util.List;
+
+import com.baomidou.mybatisplus.service.IService;
+
+import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+import burst.modular.system.entity.Permission;
 
 /**
  * <p>
@@ -18,7 +21,7 @@ public interface IPermissionService extends IService<Permission> {
 	
 
 	//添加Permission
-	public void add(RequestData requestData);
+	public ResponseData add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
 	//更新

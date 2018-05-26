@@ -3,6 +3,8 @@ package burst.modular.system.service;
 import burst.modular.system.entity.OptResource;
 import com.baomidou.mybatisplus.service.IService;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+
 import java.util.List;
 
 /**
@@ -23,6 +25,10 @@ public interface IOptResourceService extends IService<OptResource> {
 	public void delete(RequestData requestData);
 	//更新
 	public void update(RequestData requestData);
-	//查询
-	public List<OptResource> list(RequestData requestData);
+	/**
+	 * 查询资源列表
+	 * @param requestData
+	 * @return
+	 */
+	public ResponseData list(RequestData requestData);
 }

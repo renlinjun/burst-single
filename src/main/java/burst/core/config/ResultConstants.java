@@ -14,11 +14,22 @@ public enum ResultConstants {
 	//登录成功
 	LOGIN_SUCCESS(0,"登录成功");
 	
-	//登录验证失败
+	/**
+	 * 成功标志
+	 */
+	public static int SUCCESS_CODE = 0;
+	
+	/**
+	 * 登录验证失败
+	 */
 	public static int LOGIN_CHECK_FAIL = 2;
-	//添加数据失败
+	/**
+	 * 添加数据失败
+	 */
 	public static int OPT_FAIL = 3;
-	//全局异常结果代码
+	/**
+	 * 全局异常结果代码
+	 */
 	public static int EXCEPTION_CODE = 4;
 	
 	private ResultConstants(int code,String msg) {

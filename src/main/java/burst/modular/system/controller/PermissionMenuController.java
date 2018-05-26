@@ -1,14 +1,17 @@
 package burst.modular.system.controller;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
-import burst.modular.system.service.IPermissionMenuService;
-import org.springframework.beans.factory.annotation.Autowired;
-import burst.core.model.RequestData;
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
 import burst.modular.system.entity.PermissionMenu;
+import burst.modular.system.service.IPermissionMenuService;
 
 
 /**
@@ -28,7 +31,22 @@ public class PermissionMenuController {
 
 	//添加PermissionMenu
 	@RequestMapping(value="/add")
-	public void add(RequestData requestData) {};
+	public void add(RequestData requestData) {}
+	
+	/**
+	 * 为权限分配菜单
+	 * @return
+	 */
+	/**
+	 * 为权限分配菜单
+	 * @param requestData
+	 * @return
+	 */
+	@RequestMapping(value="/assignMenu")
+	public ResponseData assignMenu(@RequestBody RequestData requestData) {
+		return permissionMenuService.assignMenu(requestData);
+	}
+	
 	//删除
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};
