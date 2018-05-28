@@ -20,6 +20,8 @@ public class AuthProperties {
 	private String issuer = "burst";
 	//验证用户名密码的登录地址
 	private String loginUrl="/login";
+	//是否开启全局权限验证，默认为true
+	private boolean open=true;
 
 	public String getSecret() {
 		return secret;
@@ -43,6 +45,14 @@ public class AuthProperties {
 
 	public void setLoginUrl(String loginUrl) {
 		this.loginUrl = loginUrl;
+	}
+
+	public boolean isOpen() {
+		return open;
+	}
+
+	public void setOpen(boolean open) {
+		this.open = open;
 	}
 
 }
