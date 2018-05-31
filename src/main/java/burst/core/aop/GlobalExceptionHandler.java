@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 import burst.core.config.ResultConstants;
 import burst.core.model.ResponseData;
 
+/**
+ * @author renlinjun
+ */
 @RestController
 @ControllerAdvice
 public class GlobalExceptionHandler {

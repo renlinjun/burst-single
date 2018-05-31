@@ -2,6 +2,7 @@ package burst.modular.system.entity;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
 import com.baomidou.mybatisplus.activerecord.Model;
@@ -25,6 +26,7 @@ public class UserInfo extends Model<UserInfo> {
     /**
      * 主键ID
      */
+    @NotBlank
     @TableId(value = "ID", type = IdType.UUID)
     private String id;
 
@@ -63,7 +65,7 @@ public class UserInfo extends Model<UserInfo> {
     /**
      * 人员信息状态(Y:可用，N：删除)
      */
-    private String status;
+        private String status;
 
     public String getId() {
         return id;

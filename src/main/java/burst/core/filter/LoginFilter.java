@@ -1,3 +1,4 @@
+
 package burst.core.filter;
 
 import java.io.IOException;
@@ -22,13 +23,11 @@ import burst.core.model.ResponseData;
 import cn.hutool.json.JSONUtil;
 
 /**
- * 登录过滤器，判断是否有token并且token是否合法
- * @author RLJ
- *
+ * @author renlinjun
  */
 @WebFilter(urlPatterns="/*")
 @Order(value=1)
-public class SessionFilter implements Filter {
+public class LoginFilter implements Filter {
 
 	@Autowired
 	private AuthProperties authProperties;
@@ -46,9 +45,8 @@ public class SessionFilter implements Filter {
 			throws IOException, ServletException {
 		
 		HttpServletRequest httpRequest = ((HttpServletRequest)request);
-		//如果为不开启权限验证，则直接跳过该过滤器
-		if(!authProperties.isOpen()) {
-			filterChain.doFilter(request, response);
+		//如果为开启权限验证，则直接跳过过滤器
+		if(authProperties.isOpen()) {
 			return;
 		}
 		
@@ -80,7 +78,7 @@ public class SessionFilter implements Filter {
 			response.getWriter().flush();  
 	        response.getWriter().close();
 		}
-		
+
 		
        
 		
