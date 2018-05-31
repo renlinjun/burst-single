@@ -21,6 +21,9 @@ import burst.core.config.ResultConstants;
 import burst.core.model.ResponseData;
 import cn.hutool.json.JSONUtil;
 
+/**
+ * @author renlinjun
+ */
 @WebFilter(urlPatterns="/*")
 @Order(value=1)
 public class LoginFilter implements Filter {
@@ -42,7 +45,7 @@ public class LoginFilter implements Filter {
 		
 		HttpServletRequest httpRequest = ((HttpServletRequest)request);
 		//如果为开启权限验证，则直接跳过过滤器
-		if(!authProperties.isOpen()) {
+		if(authProperties.isOpen()) {
 			return;
 		}
 		
@@ -74,7 +77,7 @@ public class LoginFilter implements Filter {
 			response.getWriter().flush();  
 	        response.getWriter().close();
 		}
-		
+
 		
        
 		

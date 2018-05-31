@@ -17,10 +17,36 @@
     <sql id="Base_Column_List">
         ID, ACCOUNT_NAME, PASSWD, USER_INFO_ID
     </sql>
+
+    <!-- 通用查询条件-->
+    <sql id="entityJoins">
+	</sql>
     
     <select id="selectAccount" parameterType="map" resultType="map">
 		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from account A  where a.ACCOUNT_NAME=#{user_name} AND A.PASSWD=#{password}
     </select>
     
+
+
+    <!--根据userinfoId查询相关账号信息-->
+    <select id="selectByUserinfoId" parameterType="map" resultType="map">
+    SELECT
+		<include refid="Base_Column_List" />
+        where 1=1
+        <if test="_parameter != null and _parameter != ''">
+			AND USER_INFO_ID = #{userInfoId}
+		</if>
+
+    </select>
+
+  <!--逻辑删除用户-->
+    <update id="delByColId">
+		UPDATE account SET
+		del_flag = 'N'
+        where 1=1
+		<if test="_parameter != null and _parameter != ''">
+			AND USER_INFO_ID = #{userInfoId}
+		</if>
+	</update>
 
 </mapper>

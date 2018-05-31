@@ -20,10 +20,50 @@
     <sql id="Base_Column_List">
         ID, USER_CODE, USER_NAME, EMAIL, SEX, AGE, TITLE, STATUS
     </sql>
-    
+
     <!-- <insert id="addUser" parameterType="Map" >
     	insert into user_info(USER_CODE,USER_NAME,EMAIL,SEX,AGE,TITLE,STATUS) 
     	value(#{user_code},#{user_name},#{email},#{sex},#{age},#{title},#{status})
     </insert> -->
+
+
+
+    <select id="get" resultType="UserInfo">
+		SELECT
+			<include refid="Base_Column_List"/>
+		FROM user_info a
+		WHERE a.id = #{id}
+	</select>
+
+
+    <update id="delByuserId">
+		UPDATE user_info SET
+		status = 'N'
+		WHERE id = #{id}
+	</update>
+
+
+     <update id="updateByuserId">
+		UPDATE user_info SET
+		USER_CODE = #{userCode},
+		USER_NAME = #{userName},
+		EMAIL = #{email},
+		SEX = #{sex},
+		AGE = #{age},
+		TITLE = #{title}
+		WHERE id = #{id}
+	</update>
+
+
+	<select id="findUserMemberShip" resultType="UserInfo">
+		SELECT
+		 a.*
+		from user_role a
+		LEFT JOIN user_info  b on a.USER_ID = b.ID
+		LEFT JOIN role c on c.ID = a.ROLE_ID
+		WHERE
+		  1=1
+		AND a.USER_ID = #{id}
+	</select>
 
 </mapper>

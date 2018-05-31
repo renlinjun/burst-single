@@ -19,4 +19,12 @@ public interface AccountMapper extends BaseMapper<Account> {
 	
 	public List<Map<String,Object>> selectAccount(Map<String,Object> map);
 
+
+	/**
+	 * description:通过字段逻辑删除账户
+	 * @param Id
+	 * @return
+	 */
+	public int delByColId(String Id);
+
 }
