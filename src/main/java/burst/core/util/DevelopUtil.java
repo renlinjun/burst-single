@@ -3,6 +3,14 @@ package burst.core.util;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
+import org.springframework.boot.autoconfigure.data.redis.RedisProperties.Jedis;
+import org.springframework.dao.DataAccessException;
+import org.springframework.data.redis.connection.RedisClusterConnection;
+import org.springframework.data.redis.connection.RedisConnection;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.RedisSentinelConnection;
+import org.springframework.data.redis.core.StringRedisTemplate;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -19,6 +27,7 @@ public class DevelopUtil {
 	 * @param str
 	 * @throws IOException
 	 */
+	@SuppressWarnings("restriction")
 	public static void getBase64Encode(String str) throws IOException {
 		BASE64Encoder encoder = new BASE64Encoder();
 		BASE64Decoder decoder = new BASE64Decoder();
@@ -29,6 +38,7 @@ public class DevelopUtil {
 		//解码
 		System.out.println(new String(decoder.decodeBuffer(encodedText), "UTF-8"));
 	}
+	
 	
 	public static void main(String[] args) throws IOException {
 		DevelopUtil.getBase64Encode("sedin");

@@ -1,11 +1,11 @@
 package burst.modular.system.service;
 
-import burst.modular.system.entity.Account;
-import com.baomidou.mybatisplus.service.IService;
-import burst.core.model.RequestData;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.service.IService;
+
+import burst.core.model.RequestData;
+import burst.modular.system.entity.Account;
 
 /**
  * <p>
@@ -28,6 +28,10 @@ public interface IAccountService extends IService<Account> {
 	//查询
 	public List<Account> list(RequestData requestData);
 	
-	/**检查用户名密码是否合法*/
-	public boolean isLegal(RequestData requestData);
+	/**
+	 * 检查用户名密码是否合法
+	 * 如果用户名密码合法则返回账户信息
+	 * 否则返回null
+	 */
+	public Account checkAccount(String accountName,String password);
 }

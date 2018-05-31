@@ -19,12 +19,17 @@ public class RedisConfig {
 	 * @return
 	 */
 	@Bean("jsonRedisTemplate")
-	public RedisTemplate<Object, Object> FastJsonReidsTemplateConfig(RedisConnectionFactory connectionFactory) {
-		RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
+	public RedisTemplate<String, Object> FastJsonRedisTemplateConfig(RedisConnectionFactory connectionFactory) {
+		RedisTemplate<String, Object> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(connectionFactory);
 		redisTemplate.setDefaultSerializer(new GenericFastJsonRedisSerializer());
 		return redisTemplate;
 	}
+	
+	/*@Bean(name="redisTemplate")
+	public RedisTemplate<Object, Object> redisTemplate(RedisConnectionFactory connectionFactory) {
+		return new RedisTemplate<Object, Object>();
+	}*/
 	
 	/**
 	 * 配置redisTemplate
@@ -33,21 +38,21 @@ public class RedisConfig {
 	 * @param connectionFactory
 	 * @return
 	 */
-	@Bean("redisTemplate")
+/*	@Bean("redisTemplate")
 	public RedisTemplate<Object, Object> reidsTemplateConfig(RedisConnectionFactory connectionFactory) {
 		RedisTemplate<Object, Object> redisTemplate = new RedisTemplate<>();
 		redisTemplate.setConnectionFactory(connectionFactory);
 		redisTemplate.setKeySerializer(new StringRedisSerializer());
 		return redisTemplate;
 	}
-	
+	*/
 	/**
 	 * 配置StringRedisTemplate
 	 * @param connectionFactory
 	 * @return
 	 */
 	@Bean("stringRedisTemplate")
-	public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) {
+	public StringRedisTemplate stringRedisTemplateConfig(RedisConnectionFactory connectionFactory) {
 		return new StringRedisTemplate(connectionFactory);
 	}
 	

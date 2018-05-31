@@ -21,7 +21,7 @@ spring:
     username: root
     password: 123456
   redis: 
-    host: 172.25.0.15
+    host: 172.25.0.25
     port: 6379
     password: 123456
 server: 

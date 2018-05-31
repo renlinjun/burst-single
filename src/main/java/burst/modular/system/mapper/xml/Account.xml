@@ -19,7 +19,7 @@
     </sql>
     
     <select id="selectAccount" parameterType="map" resultType="map">
-		select A.ACCOUNT_NAME,A.USER_INFO_ID,A.PASSWD from account A  where a.ACCOUNT_NAME=#{user_name} AND A.PASSWD=#{password}
+		select A.ACCOUNT_NAME as accountName,A.USER_INFO_ID as userInfoId,A.PASSWD as password from account A  where a.ACCOUNT_NAME=#{accountName} AND A.PASSWD=#{password}
     </select>
     
 

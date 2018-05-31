@@ -11,7 +11,7 @@ import burst.core.auth.JwtToken;
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-import burst.modular.system.service.IAccountService;
+import burst.modular.auth.impl.ILoginService;
 
 /**
  * 登录操作相关controller
@@ -23,7 +23,7 @@ import burst.modular.system.service.IAccountService;
 public class LoginController {
 	
 	@Autowired
-	private IAccountService accountService;
+	private ILoginService loginService;
 	
 	@Autowired
 	private JwtToken jwtToken;
@@ -34,16 +34,9 @@ public class LoginController {
 	 */
 	@RequestMapping(value="/login")
 	public ResponseData login(@RequestBody RequestData requestData) {
-		//判断用户名密码是否合法
-		boolean flag = accountService.isLegal(requestData);
-		if(flag) {
-			String userId = requestData.getData().getString("user_id");
-			String token = jwtToken.createToken(userId);
-			JSONObject json = new JSONObject();
-			json.put("token", token);
-			return new ResponseData(ResultConstants.LOGIN_SUCCESS, json);
-		}
-		return new ResponseData(ResultConstants.LOGIN_CHECK_FAIL,"用户名密码错误");
+		String accountName = requestData.getData().getString("accountName");
+		String password = requestData.getData().getString("password");
+		return loginService.checkUser(accountName, password);
 	}
 
 }

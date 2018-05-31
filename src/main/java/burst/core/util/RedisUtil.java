@@ -8,7 +8,7 @@ public class RedisUtil {
 	@Autowired
 	private RedisTemplate<String, Object> redisTemplate;
 	
-	public Object get(String key) {
+	public static Object get(String key) {
 		return null;
 	}
 	

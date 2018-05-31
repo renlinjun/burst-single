@@ -1,6 +1,5 @@
 package burst.modular.system.service.impl;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,16 +37,22 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 	}
 	
 	@Override
-	public boolean isLegal(RequestData requestData) {
-		
-		JSONObject data = requestData.getData();
+	public Account checkAccount(String accountName,String password) {
+		JSONObject data = new JSONObject();
+		data.put("userName", accountName);
+		data.put("password", password);
 		/** 查询用户名密码 */
 		List<Map<String,Object>> accounts = baseMapper.selectAccount(data);
 		
-		if(accounts.size()==1) {
-			return true;
+		if(accounts.size()<=0 || accounts.size()>1) {
+			return null;
 		}
+		//组合account信息
+		Map<String,Object> accountMap = accounts.get(0);
+		Account account = new Account();
+		account.setAccountName(accountMap.get("accountName").toString());
+		account.setUserInfoId(accountMap.get("userInfoId").toString());
 		
-		return false;
+		return account;
 	};
 }
