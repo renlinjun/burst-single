@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-05-23 19:12:07
+Date: 2018-05-31 19:15:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -76,7 +76,7 @@ CREATE TABLE `opt_resource` (
   `RESOURCE_NAME` varchar(20) DEFAULT NULL COMMENT '资源名称',
   `RESOURCE_URL` varchar(200) DEFAULT NULL COMMENT '资源URL',
   `RESOURCE_CODE` varchar(20) DEFAULT NULL COMMENT '资源代码',
-  `IS_LOGIN` varchar(8) DEFAULT NULL COMMENT '是否需要登录(true,false)',
+  `USE_LOGIN` varchar(8) DEFAULT NULL COMMENT '是否需要登录(true,false)',
   `IS_SIGN` varchar(8) DEFAULT NULL COMMENT '是否需要签名(true.false)',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='功能操作资源表';
@@ -84,6 +84,7 @@ CREATE TABLE `opt_resource` (
 -- ----------------------------
 -- Records of opt_resource
 -- ----------------------------
+INSERT INTO `opt_resource` VALUES ('1', '2', '3', '4', '5', '6');
 
 -- ----------------------------
 -- Table structure for permission
@@ -100,6 +101,7 @@ CREATE TABLE `permission` (
 -- ----------------------------
 -- Records of permission
 -- ----------------------------
+INSERT INTO `permission` VALUES ('1', '2', '3', '4');
 
 -- ----------------------------
 -- Table structure for permission_menu
@@ -122,12 +124,14 @@ DROP TABLE IF EXISTS `permission_resource`;
 CREATE TABLE `permission_resource` (
   `PERMISSION_ID` varchar(32) NOT NULL COMMENT '权限ID',
   `RESOURCE_ID` varchar(32) NOT NULL COMMENT '资源ID',
+  `RESOURCE_TYPE` varchar(255) NOT NULL,
   PRIMARY KEY (`PERMISSION_ID`,`RESOURCE_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限资源关联表';
 
 -- ----------------------------
 -- Records of permission_resource
 -- ----------------------------
+INSERT INTO `permission_resource` VALUES ('1', '1', '');
 
 -- ----------------------------
 -- Table structure for role
@@ -145,6 +149,20 @@ CREATE TABLE `role` (
 
 -- ----------------------------
 -- Records of role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for role_permission
+-- ----------------------------
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE `role_permission` (
+  `ROLE_ID` varchar(64) DEFAULT NULL COMMENT '角色ID',
+  `PERMISSION_ID` varchar(64) DEFAULT NULL COMMENT '权限ID',
+  `PERMISSION_TYPE` char(2) DEFAULT NULL COMMENT '权限类型（菜单权限，操作权限，元素权限）'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of role_permission
 -- ----------------------------
 
 -- ----------------------------
@@ -212,4 +230,6 @@ CREATE TABLE `user_role` (
 -- ----------------------------
 -- Records of user_role
 -- ----------------------------
+INSERT INTO `user_role` VALUES ('111', '222');
+INSERT INTO `user_role` VALUES ('333', '444');
 SET FOREIGN_KEY_CHECKS=1;
