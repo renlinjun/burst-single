@@ -41,7 +41,7 @@ public class UserInfoController {
 
     /**
      * author：yufei.w
-     * description：公用方法
+     * description：公用方法 任何访问到根路径下请求 都会先走这个方法
      * @param requestData
      * @return
      */
@@ -170,7 +170,7 @@ public class UserInfoController {
 
 		//查询关系表中 是否存在
         if(userInfo!=null){
-            userInfoService.findUserMemberShip(userInfo.getId());
+           List<UserInfo> userInfoList = userInfoService.findUserMemberShip(userInfo.getId());
         }else {
            return new ResponseData(ResultConstants.OPT_FAIL,"参数异常");
         }

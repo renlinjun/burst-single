@@ -17,16 +17,44 @@ import java.util.List;
 public interface IDeptService extends IService<Dept> {
 
 
-
-	//添加
+	/**
+	 * 添加
+	 * @param requestData
+	 * @return
+	 */
 	public int add(RequestData requestData);
-	//删除
-	public void delete(RequestData requestData);
-	//更新
+
+
+	/**
+	 * 删除
+	 * @param requestData
+	 * @return
+	 */
+	public Integer delete(RequestData requestData);
+
+
+
+	/**
+	 * 更新
+	 * @param requestData
+	 * @return
+	 */
 	public void update(RequestData requestData);
-	//查询
+
+
+	/**
+	 * 查询
+	 * @param requestData
+	 * @return
+	 */
 	public List<Dept> list(RequestData requestData);
 
+	/**
+	 * decription:全查
+	 * @param requestData
+	 * @return
+	 */
+	public List<Dept> findAll(RequestData requestData);
 
 }
 

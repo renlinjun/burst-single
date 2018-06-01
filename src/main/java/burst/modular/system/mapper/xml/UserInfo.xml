@@ -28,7 +28,7 @@
 
 
 
-    <select id="get" resultType="UserInfo">
+    <select id="get" resultType="burst.modular.system.entity.UserInfo">
 		SELECT
 			<include refid="Base_Column_List"/>
 		FROM user_info a
@@ -55,7 +55,7 @@
 	</update>
 
 
-	<select id="findUserMemberShip" resultType="UserInfo">
+	<select id="findUserMemberShip" resultType="burst.modular.system.entity.UserInfo">
 		SELECT
 		 a.*
 		from user_role a

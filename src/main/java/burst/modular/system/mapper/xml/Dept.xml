@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="burst.modular.system.mapper.DeptMapper">
+
+    <sql id="entityColumns">
+    	a.ID,
+ 		a.DEPT_CODE,
+		a.DEPT_NAME,
+ 		a.DEPT_TYPE,
+ 		a.P_DEPT,
+		a.P_DEPTS,
+ 		a.PRIMARY_PERSON,
+		a.DEPUTY_PERSON,
+		a.REMARK,
+ 		a.DEL_FLAG
+	</sql>
+
+
+	<sql id="entityJoins">
+    </sql>
+
+
+
+	<select id="findAll" resultType="burst.modular.system.entity.Dept">
+		SELECT
+			<include refid="entityColumns"/>
+		FROM dept a
+		<include refid="entityJoins"/>
+		WHERE (a.del_flag = 'N')
+		 ORDER BY a.DEPT_CODE desc
+	</select>
+
+
+
+	<update id="delByDeptId">
+		UPDATE dept SET
+		del_flag = 'N'
+		WHERE id = #{deptId}
+	</update>
+</mapper>
