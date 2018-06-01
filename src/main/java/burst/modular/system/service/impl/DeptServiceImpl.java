@@ -26,6 +26,11 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     private  DeptMapper deptMapper;
 
 
+    @Override
+    public Dept get(String deptParm) {
+        return deptMapper.get(deptParm);
+    }
+
     /**
      * 添加部门实现方法
      * @param requestData
@@ -77,8 +82,18 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     }
 
     @Override
-    public void update(RequestData requestData) {
+    public Integer update(RequestData requestData,Dept dept) {
 
+        Integer result = 0;
+        Dept dept0 = requestData.parseObj(Dept.class);
+        // 获取修改前的parentIds，用于更新子节点的parentIds
+        String oldPid = dept.getpDeptId();
+        String oldpids = dept.getpDeptIds();
+        // 设置新的父节点串
+        String pids = oldpids.replace("oldPid",dept0.getpDeptId());
+        dept0.setpDeptIds(pids);
+        result =deptMapper.updateByDeptId(dept0);
+        return result;
     }
 
     /**

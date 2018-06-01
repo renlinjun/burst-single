@@ -3,6 +3,7 @@ package burst.modular.system.service;
 import burst.core.model.RequestData;
 import burst.modular.system.entity.Dept;
 import burst.modular.system.entity.Role;
+import burst.modular.system.entity.UserInfo;
 import com.baomidou.mybatisplus.service.IService;
 
 import java.util.List;
@@ -15,6 +16,15 @@ import java.util.List;
  * @date 2018/5/3015:35
  */
 public interface IDeptService extends IService<Dept> {
+
+
+
+	/**
+	 *
+	 * @param deptParm
+	 * @return
+	 */
+	public Dept get (String deptParm);
 
 
 	/**
@@ -39,7 +49,7 @@ public interface IDeptService extends IService<Dept> {
 	 * @param requestData
 	 * @return
 	 */
-	public void update(RequestData requestData);
+	public Integer update(RequestData requestData,Dept dept);
 
 
 	/**

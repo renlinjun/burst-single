@@ -5,12 +5,16 @@ import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.system.entity.Dept;
 import burst.modular.system.entity.Role;
+import burst.modular.system.entity.UserInfo;
 import burst.modular.system.service.IDeptService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
@@ -19,7 +23,7 @@ import java.util.Map;
  * @author yf.wang
  * @Title: mvc部门控制层
  * @Package
- * @Description: 部门控制层 人员将加挂在部门下
+ * @Description: mvc部门控制层 人员将加挂在部门下
  * @date 2018/5/30 15:29
  */
 public class DeptController {
@@ -28,10 +32,28 @@ public class DeptController {
     @Autowired
     private IDeptService deptService;
 
+    /**
+     * author：yufei.w
+     * description：公用方法 任何访问到根路径下请求 都会先走这个方法
+     *
+     * @param requestData
+     * @return
+     */
+    @ModelAttribute
+    public Dept get(@RequestParam(required = false) RequestData requestData) {
+        Dept deptParm = requestData.parseObj(Dept.class);
+        if (StringUtil.isNullOrEmpty(deptParm.getId())) {
+            Dept dept = deptService.get(deptParm.getId());
+            return dept;
+        } else {
+            return new Dept();
+        }
+    }
 
 
     /**
      * description:树形结构查询（添加时候默认 首先选择上级机构，为空则数据库默认p_dept 为‘0’）
+     *
      * @param requestData
      * @return
      */
@@ -51,48 +73,61 @@ public class DeptController {
                 mapList.add(map);
             }
 
-        }else{
-            return new ResponseData(ResultConstants.OPT_FAIL,"查询部门树形结构失败");
+        } else {
+            return new ResponseData(ResultConstants.OPT_FAIL, "查询部门树形结构失败");
         }
 
 
-        return new ResponseData(ResultConstants.SUCCESS_RESPONSE,"查询部门树形结构结果如下:"+mapList);
+        return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "查询部门树形结构结果如下:" + mapList);
 
     }
 
 
     /**
      * 添加部门
+     *
      * @param requestData
      * @return
      * @throws Exception
      */
     @RequestMapping(value = "/add")
     public ResponseData add(@RequestBody RequestData requestData) throws Exception {
-        Integer dept =deptService.add(requestData);
-       if(dept>0) {
-			return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
-		}
+        Integer dept = deptService.add(requestData);
+        if (dept > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+        }
 
-		return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+        return new ResponseData(ResultConstants.OPT_FAIL, "操作失败");
     }
 
     //删除
     @RequestMapping(value = "/delete")
-    public void delete(RequestData requestData) {
-      //判断是否为子级结构
+    public ResponseData delete(RequestData requestData) {
 
+        Integer result = deptService.delete(requestData);
 
-      //是，直接删除
+        if (result > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+        }
 
-
-      //否，必须删除其下所有子级结构
-
+        return new ResponseData(ResultConstants.OPT_FAIL, "操作失败");
     }
 
-    //更新
+
+    /**
+     * description:更新
+     *
+     * @param requestData
+     */
     @RequestMapping(value = "/update")
-    public void update(RequestData requestData) {
+    public ResponseData update(RequestData requestData, Dept dept) {
+        //更新和 添加应该可以合并
+        Integer result = deptService.update(requestData, dept);
+        if (!"0".equals(result)) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功用户表，更新用户表数据条数:" + result);
+        }
+
+        return new ResponseData(ResultConstants.OPT_FAIL, "数据库更新失败");
     }
 
     //查询
@@ -100,9 +135,6 @@ public class DeptController {
     public List<Role> list(RequestData requestData) {
         return null;
     }
-
-
-
 
 
     //--

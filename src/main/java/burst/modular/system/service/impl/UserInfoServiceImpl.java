@@ -61,7 +61,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 		if(accountResult<=0) {
 			return -1;
 		}
-		
+		//给用户添加所属部门
+
 		return 1;
 		
 		

@@ -21,6 +21,15 @@
 
 
 
+	<select id="get" resultType="burst.modular.system.entity.Dept">
+		SELECT
+			<include refid="entityColumns"/>
+		FROM dept a
+		WHERE a.id = #{deptParm}
+	</select>
+
+
+
 	<select id="findAll" resultType="burst.modular.system.entity.Dept">
 		SELECT
 			<include refid="entityColumns"/>
@@ -36,5 +45,24 @@
 		UPDATE dept SET
 		del_flag = 'N'
 		WHERE id = #{deptId}
+	</update>
+
+
+
+
+
+
+	<update id="updateByDeptId">
+		UPDATE dept SET
+		DEPT_CODE = #{deptCode},
+		DEPT_NAME = #{deptName},
+		DEPT_TYPE = #{deptType},
+		P_DEPT = #{pDept},
+		P_DEPTS = #{pDepts},
+		PRIMARY_PERSON = #{primaryPerson}
+		DEPUTY_PERSON = #{deptPerson}
+		DEL_FLAG = #{delFlag}
+		REMARK = #{remark}
+		WHERE id = #{id}
 	</update>
 </mapper>
