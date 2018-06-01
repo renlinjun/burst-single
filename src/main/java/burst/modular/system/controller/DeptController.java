@@ -11,10 +11,7 @@ import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -26,6 +23,9 @@ import java.util.Map;
  * @Description: mvc部门控制层 人员将加挂在部门下
  * @date 2018/5/30 15:29
  */
+
+@RestController
+@RequestMapping("/system/dept")
 public class DeptController {
 
 
@@ -130,7 +130,13 @@ public class DeptController {
         return new ResponseData(ResultConstants.OPT_FAIL, "数据库更新失败");
     }
 
-    //查询
+
+
+    /**
+     *
+     * @param requestData
+     * @return
+     */
     @RequestMapping(value = "/list")
     public List<Role> list(RequestData requestData) {
         return null;

@@ -39,7 +39,7 @@ public class AccountServiceImpl extends ServiceImpl<AccountMapper, Account> impl
 	@Override
 	public Account checkAccount(String accountName,String password) {
 		JSONObject data = new JSONObject();
-		data.put("userName", accountName);
+		data.put("accountName", accountName);
 		data.put("password", password);
 		/** 查询用户名密码 */
 		List<Map<String,Object>> accounts = baseMapper.selectAccount(data);
