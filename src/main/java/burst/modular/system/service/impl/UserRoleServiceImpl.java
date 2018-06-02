@@ -9,7 +9,10 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
+import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
+import burst.modular.system.entity.Role;
 import burst.modular.system.entity.UserRole;
 import burst.modular.system.mapper.UserRoleMapper;
 import burst.modular.system.service.IUserRoleService;
@@ -64,5 +67,11 @@ public class UserRoleServiceImpl extends ServiceImpl<UserRoleMapper, UserRole> i
 	//查询
 	public List<UserRole> list(RequestData requestData) {
 		return null;
+	}
+
+	@Override
+	public List<Role> queryRoleByUserId(String userId) {
+		List<Role> roles = baseMapper.queryRoleByUserId(userId);
+		return roles;
 	};
 }

@@ -18,7 +18,7 @@ import com.baomidou.mybatisplus.enums.IdType;
  * @author renlinjun
  * @since 2018-05-21
  */
-@TableName("ROLE")
+@TableName("role")
 public class Role extends Model<Role> {
 
     private static final long serialVersionUID = 1L;

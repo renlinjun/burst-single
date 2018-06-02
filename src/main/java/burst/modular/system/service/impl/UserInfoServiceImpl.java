@@ -3,21 +3,20 @@ package burst.modular.system.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.TransactionManagementConfigurer;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 import burst.core.model.RequestData;
+import burst.core.util.EncryptUtil;
 import burst.modular.system.entity.Account;
 import burst.modular.system.entity.UserInfo;
 import burst.modular.system.mapper.AccountMapper;
 import burst.modular.system.mapper.UserInfoMapper;
 import burst.modular.system.service.IUserInfoService;
+import io.netty.util.internal.StringUtil;
 
 /**
  * <p>
@@ -50,11 +49,13 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 		}
 		//为新增加的用户添加系统账号
 		String accountName = userInfo.getUserCode();
-		String password="111";
+		//初始密码111
+		String password=EncryptUtil.encryptStr("111");
 		String userInfoId = userInfo.getId();
 		Account account = new Account();
+		
 		account.setAccountName(accountName);
-		account.setPasswd(password);
+		account.setPassword(password);
 		account.setUserInfoId(userInfoId);
 		int accountResult = accountMapper.insert(account);
 		//如果账号添加失败，则返回-1
@@ -98,7 +99,6 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
 		}
 		return resultUser;
-
 	};
 
 

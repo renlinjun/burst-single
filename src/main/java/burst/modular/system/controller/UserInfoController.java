@@ -1,26 +1,23 @@
 package burst.modular.system.controller;
 
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import io.netty.util.internal.StringUtil;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
-import burst.modular.system.service.IUserInfoService;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-
-import java.util.List;
-import java.util.Map;
-
 import burst.modular.system.entity.UserInfo;
-
-import javax.sound.midi.Soundbank;
-import javax.validation.Valid;
+import burst.modular.system.service.IUserInfoService;
+import io.netty.util.internal.StringUtil;
 
 
 /**
@@ -45,7 +42,7 @@ public class UserInfoController {
      * @param requestData
      * @return
      */
-	@ModelAttribute
+	//@ModelAttribute
 	public UserInfo get(@RequestParam(required=false) RequestData requestData) {
 	    UserInfo userInfoParm = requestData.parseObj(UserInfo.class);
 		if (StringUtil.isNullOrEmpty(userInfoParm.getId())){
@@ -176,9 +173,6 @@ public class UserInfoController {
         }
 
 		//如果不存在 执行插入
-
-
-
 
 		return null;
 

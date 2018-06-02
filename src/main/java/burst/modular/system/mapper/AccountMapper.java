@@ -26,5 +26,19 @@ public interface AccountMapper extends BaseMapper<Account> {
 	 * @return
 	 */
 	public int delByColId(String Id);
+	
+	/**
+	 * 更新账户
+	 * @param account
+	 * @return
+	 */
+	public int updatePassword(Account account);
+	
+	/**
+	 * 根据账户名查询账户
+	 * @param account
+	 * @return
+	 */
+	public Account queryByAccountName(String accountName);
 
 }

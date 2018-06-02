@@ -1,19 +1,20 @@
 package burst.modular.system.controller;
 
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
-import burst.modular.system.service.IUserRoleService;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-
-import java.util.List;
+import burst.modular.system.entity.Role;
 import burst.modular.system.entity.UserRole;
+import burst.modular.system.service.IUserRoleService;
+import cn.hutool.core.util.StrUtil;
 
 
 /**
@@ -50,6 +51,16 @@ public class UserRoleController {
 	@RequestMapping(value="/list")
 	public List<UserRole> list(RequestData requestData) {
 		return null;
+	}
+	
+	@RequestMapping(value="/queryByUserId")
+	public ResponseData queryByUserId(@RequestBody RequestData requestData) {
+		String userId = requestData.getData().getString("userId");
+		if(StrUtil.isEmpty(userId)) {
+			return new ResponseData(ResultConstants.DATA_CHECK_ERROR,"用户ID不能为null");
+		}
+		List<Role> roles = userRoleService.queryRoleByUserId(userId);
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE,roles);
 	}
 	
 	@RequestMapping(value="/addBatch")

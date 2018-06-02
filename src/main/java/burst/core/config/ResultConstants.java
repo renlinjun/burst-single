@@ -32,6 +32,16 @@ public enum ResultConstants {
 	 */
 	public static int EXCEPTION_CODE = 4;
 	
+	/***
+	 * 密码错误
+	 */
+	public static int PASSWORD_ERROR = 5;
+	
+	/**
+	 * 数据检查错误
+	 */
+	public static int DATA_CHECK_ERROR = 6;
+	
 	private ResultConstants(int code,String msg) {
 		this.code = code;
 		this.msg = msg;
