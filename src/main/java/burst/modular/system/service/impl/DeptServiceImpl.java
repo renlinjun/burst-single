@@ -62,8 +62,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
         String pid = dept.getpDeptId();
         String pids = dept.getpDeptIds();
         String findPids;
-        int result=0;
-        int j= pids.indexOf("pid");
+        int result;
+        int j= pids.indexOf(pid);
         findPids= pids.substring(j,pids.length());
         //删除本身
         result=deptMapper.delByDeptId(dept.getId());
@@ -72,7 +72,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
             String[] pidsList = findPids.split(",");
             for(String pidsL : pidsList){
                 if(!StringUtil.isNullOrEmpty(pidsL)){
-                    //删除本身和 下级所有
+                    //删除下级所有
                     result=deptMapper.delByDeptId(pidsL);
                 }
             }
