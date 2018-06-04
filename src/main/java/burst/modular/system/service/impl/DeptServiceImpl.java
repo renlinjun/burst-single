@@ -48,7 +48,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
 		}
 
 		// 设置新的父节点字符串
-		dept.setpDeptIds(dept.getpDeptId()+dept.getpDeptId()+",");
+		dept.setpDeptIds(dept.getpDeptIds()+dept.getpDeptId()+",");
         // 保存
         int result = baseMapper.insert(dept);
         return result;
