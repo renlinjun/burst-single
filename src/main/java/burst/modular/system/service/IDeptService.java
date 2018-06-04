@@ -1,11 +1,11 @@
 package burst.modular.system.service;
 
-import burst.core.model.RequestData;
-import burst.modular.system.entity.Dept;
-import burst.modular.system.entity.Role;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
 
-import java.util.List;
+import burst.core.model.RequestData;
+import burst.modular.system.entity.Dept;
 
 /**
  * @author yf.wang

@@ -1,11 +1,14 @@
 package burst.modular.system.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.baomidou.mybatisplus.service.IService;
 
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
+import burst.modular.system.entity.OptResource;
+import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionResource;
 
 /**
@@ -52,4 +55,13 @@ public interface IPermissionResourceService extends IService<PermissionResource>
 	 * @return
 	 */
 	public ResponseData updateBatch(RequestData requestData);
+	
+	/**
+	 * 根据权限查询权限对应的操作资源
+	 * 
+	 * @param permission
+	 * @return
+	 *  	资源列表：列表中为资源map，其中key为url，value为资源
+	 */
+	public List<Map<String,OptResource>> queryOptResourceByPermission(List<Permission> permission);
 }

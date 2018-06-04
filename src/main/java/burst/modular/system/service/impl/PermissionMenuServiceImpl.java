@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
+import burst.modular.system.entity.Menu;
+import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionMenu;
 import burst.modular.system.mapper.PermissionMenuMapper;
 import burst.modular.system.service.IPermissionMenuService;
@@ -26,10 +28,13 @@ import burst.modular.system.service.IPermissionMenuService;
 @Service
 public class PermissionMenuServiceImpl extends ServiceImpl<PermissionMenuMapper, PermissionMenu> implements IPermissionMenuService {
 	
-	
+	/**
+	 * 参数中包含权限ID和菜单ID列表，多个菜单ID用","分割
+	 */
+	@Override
 	public ResponseData assignMenu(RequestData requestData) {
 		JSONObject data = requestData.getData();
-		
+		//获取权限ID
 		String permissionId = data.getString("permissionId");
 		String menuIdStr = data.getString("menuIds");
 		
@@ -59,6 +64,11 @@ public class PermissionMenuServiceImpl extends ServiceImpl<PermissionMenuMapper,
 	public void update(RequestData requestData) {}
 	//查询
 	public List<PermissionMenu> list(RequestData requestData) {
+		return null;
+	}
+	@Override
+	public List<Menu> queryMenuTreeByPermission(List<Permission> permissions) {
+		// TODO Auto-generated method stub
 		return null;
 	};
 }

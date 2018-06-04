@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
+import burst.modular.system.entity.OptResource;
+import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionResource;
 
 /**
@@ -29,5 +31,12 @@ public interface PermissionResourceMapper extends BaseMapper<PermissionResource>
 	 * @return
 	 */
 	public int removeAllByPermissionId(String permissionId);
+	
+	/**
+	 * 根据权限查询改权限对应的资源列表
+	 * @param permissions
+	 * @return
+	 */
+	public List<OptResource> queryOptResourceByPermission(List<Permission> permissions);
 
 }
