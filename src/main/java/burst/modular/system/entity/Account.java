@@ -35,7 +35,7 @@ public class Account extends Model<Account> {
     /**
      * 密码
      */
-    private String passwd;
+    private String password;
 
     /**
      * 关联的人员详细信息ID
@@ -56,12 +56,12 @@ public class Account extends Model<Account> {
     public void setAccountName(String accountName) {
         this.accountName = accountName;
     }
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
     public String getUserInfoId() {
         return userInfoId;
@@ -81,7 +81,7 @@ public class Account extends Model<Account> {
         return "Account{" +
         "id=" + id +
         ", accountName=" + accountName +
-        ", passwd=" + passwd +
+        ", passwd=" + password +
         ", userInfoId=" + userInfoId +
         "}";
     }

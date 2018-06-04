@@ -14,20 +14,24 @@ public class LoginInfo implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	//账户名
-	private String accountId;
+	private String accountName;
 	//人员ID
 	private String userId;
+	//人员编号
+	private String userCode;
 	//人员姓名
 	private String userName;
 	//所属部门
 	private List<Dept> depts;
+	
+	
 
-	public String getAccountId() {
-		return accountId;
+	public String getAccountName() {
+		return accountName;
 	}
 
-	public void setAccountId(String accountId) {
-		this.accountId = accountId;
+	public void setAccountName(String accountName) {
+		this.accountName = accountName;
 	}
 
 	public String getUserId() {
@@ -44,6 +48,14 @@ public class LoginInfo implements Serializable {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	
+	public String getUserCode() {
+		return userCode;
+	}
+
+	public void setUserCode(String userCode) {
+		this.userCode = userCode;
 	}
 
 	public void setUserName(String userName) {

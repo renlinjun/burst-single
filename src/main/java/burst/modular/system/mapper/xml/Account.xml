@@ -15,7 +15,7 @@
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        ID, ACCOUNT_NAME, PASSWD, USER_INFO_ID
+        ID as id, ACCOUNT_NAME as accountName, PASSWD as password, USER_INFO_ID as userInfoId
     </sql>
 
     <!-- 通用查询条件-->
@@ -34,7 +34,7 @@
 		<include refid="Base_Column_List" />
         where 1=1
         <if test="_parameter != null and _parameter != ''">
-			AND USER_INFO_ID = #{userInfoId}
+			AND USER_INFO_ID like CONCAT('%',#{userInfoId},'%')
 		</if>
 
     </select>
@@ -48,5 +48,16 @@
 			AND USER_INFO_ID = #{userInfoId}
 		</if>
 	</update>
+	
+	<select id="queryByAccountName" parameterType="java.lang.String" resultType="account">
+		select 
+		<include refid="Base_Column_List" />  
+		from account where account_name = #{accountName}
+	</select>
+	
+	<update id="updatePassword" parameterType="account">
+		update account set PASSWD = #{password} where ACCOUNT_NAME = #{accountName}
+	</update>
+	
 
 </mapper>

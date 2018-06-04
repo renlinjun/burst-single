@@ -20,7 +20,21 @@
     	<foreach collection="list"  item="it" separator="," index="index">
     		(#{it.roleId},#{it.userId})
     	</foreach>
-    	
     </insert>
+    
+   <select id="queryRoleByUserId" parameterType="java.lang.String" resultType="role">
+   		SELECT
+			A.ID AS id,
+			A.ROLE_CODE AS roleCode,
+			A.ROLE_NAME AS roleName,
+			A.ROLE_DESC AS roleDesc,
+			A.ROLE_TYPE_ID AS roleTypeId
+		FROM
+			ROLE A
+		LEFT JOIN USER_ROLE B ON B.ROLE_ID = A.ID
+		LEFT JOIN ROLE_TYPE C ON A.ROLE_TYPE_ID = C.ID
+		WHERE
+			B.USER_ID = #{userId}
+   </select>
 
 </mapper>

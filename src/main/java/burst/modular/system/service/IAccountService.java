@@ -5,6 +5,7 @@ import java.util.List;
 import com.baomidou.mybatisplus.service.IService;
 
 import burst.core.model.RequestData;
+import burst.core.model.ResponseData;
 import burst.modular.system.entity.Account;
 
 /**
@@ -23,8 +24,19 @@ public interface IAccountService extends IService<Account> {
 	public void add(RequestData requestData);
 	//删除
 	public void delete(RequestData requestData);
-	//更新
-	public void update(RequestData requestData);
+	
+	/**
+	 * 根据账户名查询单条账户信息
+	 * @return
+	 */
+	//public Account queryAccountByAccountName();
+	
+	/**
+	 * 更新账号信息
+	 * @param requestData
+	 */
+	public ResponseData update(RequestData requestData);
+	
 	//查询
 	public List<Account> list(RequestData requestData);
 	
