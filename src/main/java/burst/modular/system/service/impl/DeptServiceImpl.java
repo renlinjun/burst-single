@@ -90,7 +90,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
         String oldPid = dept.getpDeptId();
         String oldpids = dept.getpDeptIds();
         // 设置新的父节点串
-        String pids = oldpids.replace("oldPid",dept0.getpDeptId());
+        String pids = oldpids.replace(oldPid,dept0.getpDeptId());
         dept0.setpDeptIds(pids);
         result =deptMapper.updateByDeptId(dept0);
         return result;
