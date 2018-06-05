@@ -1,5 +1,6 @@
 package burst.modular.system.service;
 
+import burst.core.util.PageUtils;
 import burst.modular.system.entity.UserInfo;
 import com.baomidou.mybatisplus.service.IService;
 import burst.core.model.RequestData;
@@ -52,7 +53,7 @@ public interface IUserInfoService extends IService<UserInfo> {
 	 * @param requestData
 	 * @return
 	 */
-	public List<UserInfo> findUserQueryPage (RequestData requestData);
+	public PageUtils findUserQueryPage (RequestData requestData);
 
 
 	/**

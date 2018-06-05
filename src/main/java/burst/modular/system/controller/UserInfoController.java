@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import burst.core.util.PageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -115,9 +116,9 @@ public class UserInfoController {
 	 */
 	public ResponseData findUserInfoList (@RequestBody RequestData requestData){
 
-		List<UserInfo> userInfos=userInfoService.findUserQueryPage(requestData);
+		PageUtils page =userInfoService.findUserQueryPage(requestData);
 
-		return new ResponseData(ResultConstants.SUCCESS_RESPONSE,userInfos);
+		return new ResponseData(ResultConstants.SUCCESS_RESPONSE,page);
 
 	}
 

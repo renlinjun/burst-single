@@ -3,7 +3,11 @@ package burst.modular.system.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import burst.core.util.PageUtils;
 import burst.core.util.Query;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -153,14 +157,15 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 	 * @return
 	 */
 	@Override
-	public List<UserInfo> findUserQueryPage(RequestData requestData) {
+	public PageUtils findUserQueryPage(RequestData requestData) {
 		Map<String,Object> map = requestData.getData();
 		Query query = new Query(map);
-		List<UserInfo> userInfoList = userInfoMapper.queryUserPage(map);
-//		int total = userInfoMapper.count(query);
-//		Page<Map<String,Object>> page = PageContext.de
+		String userName= (String )query.get("userName");
+		Page<UserInfo> page = this.selectPage(
+			new Query<UserInfo>(map).getPage(),new EntityWrapper<UserInfo>()
+						.like(StringUtils.isNotBlank(userName),"USER_NAME", userName));
 
-		return null;
+		return new PageUtils(page);
 	}
 
 

@@ -42,6 +42,7 @@ public class RolePermissionServiceImpl extends ServiceImpl<RolePermissionMapper,
 	 * @param roles
 	 * @return
 	 */
+	@Override
 	public List<Permission> queryPermissionByRole(List<Role> roles) {
 		List<Permission> permissions = baseMapper.queryPermissionByRole(roles);
 		return permissions;
