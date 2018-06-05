@@ -53,7 +53,7 @@ public class GeneratorAutoCodeTool {
         gc.setBaseColumnList(true);// XML columList
     // .setKotlin(true) 是否生成 kotlin 代码
         gc.setAuthor("renlinjun");
-        gc.setIdType(IdType.ID_WORKER);
+        gc.setIdType(IdType.UUID);
      // 自定义文件命名，注意 %s 会自动填充表实体属性！
         gc.setMapperName("%sMapper");
         gc.setXmlName("%sMapper");
@@ -90,10 +90,10 @@ public class GeneratorAutoCodeTool {
 	    //设置下划线开关
 	    strategy.setDbColumnUnderline(true);
 	    strategy.setCapitalMode(true);// 全局大写命名
-	    strategy.setTablePrefix(new String[] { "tlog_", "tsys_" });// 此处可以修改为您的表前缀
+	    //strategy.setTablePrefix(new String[] { "tlog_", "tsys_" });// 此处可以修改为您的表前缀
 	    strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
 	    strategy.setRestControllerStyle(true);
-	    //strategy.setInclude(new String[] { "user_info" }); // 需要生成的表
+	    strategy.setInclude(new String[] { "role_permission" }); // 需要生成的表
 	    // strategy.setExclude(new String[]{"test"}); // 排除生成的表
 	    // 自定义 mapper 父类
 	    strategy.setSuperMapperClass("com.baomidou.mybatisplus.mapper.BaseMapper");

@@ -1,10 +1,8 @@
 package burst.modular.system.entity;
 
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.activerecord.Model;
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotations.TableName;
 
 /**
  * <p>
@@ -15,7 +13,7 @@ import java.io.Serializable;
  * @since 2018-05-21
  */
 @TableName("USER_ROLE")
-public class UserRole {
+public class UserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

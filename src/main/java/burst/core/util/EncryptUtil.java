@@ -20,7 +20,7 @@ public class EncryptUtil {
         try {  
             byte[] btInput = soruceStr.getBytes();  
             // 获得MD5摘要算法的 MessageDigest 对象  
-            MessageDigest mdInst = MessageDigest.getInstance("MD5");  
+            MessageDigest mdInst = MessageDigest.getInstance("MD5");
             // 使用指定的字节更新摘要
             mdInst.update(btInput);  
             // 获得密文  
@@ -31,7 +31,7 @@ public class EncryptUtil {
             int k = 0;  
             for (int i = 0; i < j; i++) {  
                 byte byte0 = md[i];  
-                str[k++] = hexDigits[byte0 >>> 4 & 0xf];  
+                str[k++] = hexDigits[byte0 >>> 4 & 0xf];
                 str[k++] = hexDigits[byte0 & 0xf];  
             }  
             return new String(str);  

@@ -1,7 +1,9 @@
 package burst.modular.system.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
+import burst.modular.system.entity.OptResource;
+import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionResource;
 import burst.modular.system.mapper.PermissionResourceMapper;
 import burst.modular.system.service.IPermissionResourceService;
@@ -96,5 +100,20 @@ public class PermissionResourceServiceImpl extends ServiceImpl<PermissionResourc
 		}
 		
 		return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+	}
+	
+	@Override
+	public List<Map<String,OptResource>> queryOptResourceByPermission(List<Permission> permissions) {
+		//查询资源列表
+		List<OptResource> optResources = baseMapper.queryOptResourceByPermission(permissions);
+		//转换为以键值对的方式存储
+		List<Map<String,OptResource>> optResourceMap = new ArrayList<>();
+		for(int i=0;i<optResources.size();i++) {
+			Map<String,OptResource> map = new HashMap<>();
+			OptResource optResource = new OptResource();
+			map.put(optResource.getResourceUrl(), optResource);
+			optResourceMap.add(map);
+		}
+		return optResourceMap;
 	}
 }

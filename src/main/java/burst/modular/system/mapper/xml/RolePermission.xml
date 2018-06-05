@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="burst.modular.system.mapper.RolePermissionMapper">
+    <!-- 开启二级缓存 -->
+    <!--<cache type="org.mybatis.caches.ehcache.LoggingEhcache"/> -->
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="burst.modular.system.entity.RolePermission">
+        <result column="ROLE_ID" property="roleId" />
+        <result column="PERMISSION_ID" property="permissionId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ROLE_ID, PERMISSION_ID
+    </sql>
+
+	<select id="queryPermissionByRole" parameterType="java.util.List" resultType="Permission">
+		SELECT DISTINCT 
+			B.ID AS id,
+			B.PERMISSION_NAME AS permission_name,
+			B.PERMISSION_CODE AS permission_code,
+			B.PERMISSION_TYPE_ID AS permission_type_id 
+		FROM
+			ROLE_PERMISSION A
+			LEFT JOIN PERMISSION B ON A.PERMISSION_ID = B.ID 
+			AND PERMISSION_TYPE_ID = 'OPT' 
+		WHERE
+			A.ROLE_ID IN 
+			<foreach collection="list" index="index" open="(" close=")" separator="," item="role">
+				#{id}
+			</foreach>
+	</select>
+	
+</mapper>

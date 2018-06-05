@@ -1,16 +1,18 @@
 package burst.modular.system.service.impl;
 
-import burst.core.model.RequestData;
-import burst.modular.system.entity.Dept;
-import burst.modular.system.mapper.DeptMapper;
-import burst.modular.system.service.IDeptService;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import io.netty.util.internal.StringUtil;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+
+import burst.core.model.RequestData;
+import burst.modular.system.entity.Dept;
+import burst.modular.system.mapper.DeptMapper;
+import burst.modular.system.service.IDeptService;
+import io.netty.util.internal.StringUtil;
 
 /**
  * @author yf.wang

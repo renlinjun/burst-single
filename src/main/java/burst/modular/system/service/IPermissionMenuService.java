@@ -1,11 +1,14 @@
 package burst.modular.system.service;
 
-import burst.modular.system.entity.PermissionMenu;
+import java.util.List;
+
 import com.baomidou.mybatisplus.service.IService;
+
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-
-import java.util.List;
+import burst.modular.system.entity.Menu;
+import burst.modular.system.entity.Permission;
+import burst.modular.system.entity.PermissionMenu;
 
 /**
  * <p>
@@ -19,7 +22,6 @@ public interface IPermissionMenuService extends IService<PermissionMenu> {
 	
 	/**
 	 * 为权限添加菜单，会在资源下多一条菜单
-	 * 参数中包含权限ID和菜单ID列表，多个菜单ID用","分割
 	 * @param requestData
 	 */
 	public ResponseData assignMenu(RequestData requestData);
@@ -29,4 +31,6 @@ public interface IPermissionMenuService extends IService<PermissionMenu> {
 	public void update(RequestData requestData);
 	//查询
 	public List<PermissionMenu> list(RequestData requestData);
+	
+	public List<Menu> queryMenuTreeByPermission(List<Permission> permissions);
 }
