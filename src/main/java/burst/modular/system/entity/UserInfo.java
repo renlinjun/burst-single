@@ -7,6 +7,7 @@ import javax.validation.constraints.NotEmpty;
 
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
 
 /**
@@ -17,7 +18,7 @@ import com.baomidou.mybatisplus.enums.IdType;
  * @author renlinjun
  * @since 2018-05-21
  */
-//@TableName(value="USER_INFO")
+@TableName(value="USER_INFO")
 public class UserInfo extends Model<UserInfo> {
 
     private static final long serialVersionUID = 1L;

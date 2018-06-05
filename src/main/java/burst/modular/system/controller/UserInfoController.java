@@ -7,10 +7,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
@@ -36,27 +33,7 @@ public class UserInfoController {
 	private IUserInfoService userInfoService;
 
 
-    /**
-     * author：yufei.w
-     * description：公用方法 任何访问到根路径下请求 都会先走这个方法
-     * @param requestData
-     * @return
-     */
-	//@ModelAttribute
-	public UserInfo get(@RequestParam(required=false) RequestData requestData) {
-	    UserInfo userInfoParm = requestData.parseObj(UserInfo.class);
-		if (StringUtil.isNullOrEmpty(userInfoParm.getId())){
-		UserInfo userInfo = userInfoService.get(userInfoParm.getId());
-			return userInfo;
-		}else{
-			return new UserInfo();
-		}
-	}
-
 	/*------------------------------------------------------------------------*/
-
-
-
 
 	/**
 	 * 添加user
@@ -123,7 +100,7 @@ public class UserInfoController {
 	 * @return
 	 */
 	@RequestMapping(value="/list")
-	public List<UserInfo> list(RequestData requestData) {
+	public List<UserInfo> list(@RequestBody RequestData requestData) {
 
 		List<UserInfo> userInfos = userInfoService.list(requestData);
 		return userInfos;
@@ -136,7 +113,7 @@ public class UserInfoController {
 	 * @param requestData
 	 * @return
 	 */
-	public ResponseData findUserInfoList (RequestData requestData){
+	public ResponseData findUserInfoList (@RequestBody RequestData requestData){
 
 		List<UserInfo> userInfos=userInfoService.findUserQueryPage(requestData);
 
@@ -163,14 +140,14 @@ public class UserInfoController {
 	 * @param requestData
 	 * @return
 	 */
-	public ResponseData saveTheRole (UserInfo userInfo ,RequestData requestData){
+	public ResponseData saveTheRole (@RequestBody RequestData requestData){
 
 		//查询关系表中 是否存在
-        if(userInfo!=null){
+      /*  if(userInfo!=null){
            List<UserInfo> userInfoList = userInfoService.findUserMemberShip(userInfo.getId());
         }else {
            return new ResponseData(ResultConstants.OPT_FAIL,"参数异常");
-        }
+        }*/
 
 		//如果不存在 执行插入
 

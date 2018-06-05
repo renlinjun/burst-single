@@ -57,10 +57,10 @@ public interface IUserInfoService extends IService<UserInfo> {
 
 	/**
 	 *
-	 * @param userInfoParm
+	 * @param requestData
 	 * @return
 	 */
-	public UserInfo get (String userInfoParm);
+	public UserInfo get (RequestData requestData);
 
 
 	/**

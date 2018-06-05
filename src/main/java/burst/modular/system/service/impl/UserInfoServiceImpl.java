@@ -3,6 +3,7 @@ package burst.modular.system.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import burst.core.util.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -154,6 +155,9 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 	@Override
 	public List<UserInfo> findUserQueryPage(RequestData requestData) {
 		Map<String,Object> map = requestData.getData();
+		Query query = new Query(map);
+		List<UserInfo> userInfoList = userInfoMapper.queryUserPage(map);
+//		int total = userInfoMapper.count(query);
 //		Page<Map<String,Object>> page = PageContext.de
 
 		return null;
@@ -162,13 +166,18 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 
     /**
      *
-     * @param userInfoParm
+     * @param requestData
      * @return
      */
 	@Override
-    public UserInfo get(String userInfoParm ){
-        UserInfo userInfo =userInfoMapper.get(userInfoParm);
-	    return userInfo;
+    public UserInfo get(RequestData requestData ){
+		UserInfo userInfoParm = requestData.parseObj(UserInfo.class);
+		if (StringUtil.isNullOrEmpty(userInfoParm.getId())){
+		UserInfo userInfo = userInfoMapper.get(userInfoParm.getId());
+			return userInfo;
+		}else{
+			return new UserInfo();
+		}
     }
 
 

@@ -4,8 +4,6 @@ import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.system.entity.Dept;
-import burst.modular.system.entity.Role;
-import burst.modular.system.entity.UserInfo;
 import burst.modular.system.service.IDeptService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -32,23 +30,6 @@ public class DeptController {
     @Autowired
     private IDeptService deptService;
 
-    /**
-     * author：yufei.w
-     * description：公用方法 任何访问到根路径下请求 都会先走这个方法
-     *
-     * @param requestData
-     * @return
-     */
-    @ModelAttribute
-    public Dept get(@RequestParam(required = false) RequestData requestData) {
-        Dept deptParm = requestData.parseObj(Dept.class);
-        if (StringUtil.isNullOrEmpty(deptParm.getId())) {
-            Dept dept = deptService.get(deptParm.getId());
-            return dept;
-        } else {
-            return new Dept();
-        }
-    }
 
 
     /**
@@ -58,7 +39,7 @@ public class DeptController {
      * @return
      */
     @RequestMapping(value = "/treeData")
-    public ResponseData treeData(RequestData requestData) {
+    public ResponseData treeData(@RequestBody RequestData requestData) {
         List<Map<String, Object>> mapList = Lists.newArrayList();
         List<Dept> list = deptService.findAll(requestData);
         Map<String, Object> map = Maps.newHashMap();
@@ -78,13 +59,14 @@ public class DeptController {
         }
 
 
-        return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "查询部门树形结构结果如下:" + mapList);
+        return new ResponseData(ResultConstants.SUCCESS_RESPONSE, mapList);
 
     }
 
 
     /**
      * 添加部门
+     * descirption:添加根级别部门getpDeptId = ‘0’
      *
      * @param requestData
      * @return
@@ -94,7 +76,7 @@ public class DeptController {
     public ResponseData add(@RequestBody RequestData requestData) throws Exception {
         Integer dept = deptService.add(requestData);
         if (dept > 0) {
-            return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE,"成功插入："+dept+"条");
         }
 
         return new ResponseData(ResultConstants.OPT_FAIL, "操作失败");
@@ -120,26 +102,30 @@ public class DeptController {
      * @param requestData
      */
     @RequestMapping(value = "/update")
-    public ResponseData update(RequestData requestData, Dept dept) {
+    public ResponseData update(RequestData requestData) {
         //更新和 添加应该可以合并
-        Integer result = deptService.update(requestData, dept);
+        Integer result = deptService.update(requestData);
         if (!"0".equals(result)) {
-            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功用户表，更新用户表数据条数:" + result);
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功，更新部门表数据条数:" + result);
         }
 
         return new ResponseData(ResultConstants.OPT_FAIL, "数据库更新失败");
     }
 
 
-
     /**
+     * description：根据部门名称模糊查询
      *
      * @param requestData
      * @return
      */
     @RequestMapping(value = "/list")
-    public List<Role> list(RequestData requestData) {
-        return null;
+    public ResponseData list(RequestData requestData) {
+        List<Dept> deptList = deptService.findAll(requestData);
+        if (deptList != null && deptList.size() > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功用户表，更新用户表数据条数:" + deptList.get(0));
+        }
+        return new ResponseData(ResultConstants.OPT_FAIL, "查询部门失败");
     }
 
 

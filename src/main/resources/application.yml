@@ -34,7 +34,11 @@ mybatis-plus:
   global-config: 
     cache-enabled: false
     db-column-underline: true
-  
+logging:
+  level:
+    root: info
+    burst: debug
+
 ---
 spring: 
   profiles: test
