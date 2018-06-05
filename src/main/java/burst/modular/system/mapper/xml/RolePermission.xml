@@ -15,7 +15,7 @@
         ROLE_ID, PERMISSION_ID
     </sql>
 
-	<select id="queryPermissionByRole" parameterType="java.util.List" resultType="Permission">
+	<select id="queryPermissionByRole" parameterType="java.util.List" resultType="burst.modular.system.entity.Permission">
 		SELECT DISTINCT 
 			B.ID AS id,
 			B.PERMISSION_NAME AS permission_name,
@@ -25,11 +25,13 @@
 			ROLE_PERMISSION A
 			LEFT JOIN PERMISSION B ON A.PERMISSION_ID = B.ID 
 			AND PERMISSION_TYPE_ID = 'OPT' 
-		WHERE
-			A.ROLE_ID IN 
+		WHERE 1=1
+		<if test="list != null and list.size() > 0">
+			AND A.ROLE_ID IN
 			<foreach collection="list" index="index" open="(" close=")" separator="," item="role">
 				#{id}
 			</foreach>
+		 </if>
 	</select>
 	
 </mapper>
