@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
@@ -45,6 +46,7 @@ public class RequestDataMessageConverter extends AbstractHttpMessageConverter<Re
 	protected RequestData readInternal(Class<? extends RequestData> clazz, HttpInputMessage inputMessage)
 			throws IOException, HttpMessageNotReadableException {
 		RequestData requestData = new RequestData();
+		
 		InputStream is = inputMessage.getBody();	
 		byte[] data = new byte[is.available()];
 		JSONObject json = null;

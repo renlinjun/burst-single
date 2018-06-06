@@ -79,10 +79,6 @@ public class LoginServiceImpl implements ILoginService {
 		List<Map<String,OptResource>> optResources = permissionResource.queryOptResourceByPermission(permissions);
 		//缓存权限对应的资源
 		redisHandler.put(token+GolbalConstants.OPT_RESOURCE_CACHE_SUFFIX, optResources);
-		
-		//TODO 缓存权限对应的菜单
-		
-		
 	}
 	
 	

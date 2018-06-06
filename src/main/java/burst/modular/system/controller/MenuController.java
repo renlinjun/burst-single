@@ -1,6 +1,7 @@
 package burst.modular.system.controller;
 
 
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
@@ -52,4 +53,9 @@ public class MenuController {
 	public List<Menu> list(RequestData requestData) {
 		return null;
 	};
+	
+	public ResponseData getMenus(@RequestBody RequestData requestData) {
+		return null;
+		
+	}
 }

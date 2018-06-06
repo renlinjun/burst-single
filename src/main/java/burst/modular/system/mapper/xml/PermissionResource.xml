@@ -27,5 +27,24 @@
     <delete id="removeAllByPermissionId" parameterType="java.lang.String">
     	delete from PERMISSION_RESOURCE where permission_id =#{permissionId}
     </delete>
+    
+    <select id="queryOptResourceByPermission" parameterType="java.util.List" resultType="optResource">
+    	SELECT
+			c.ID AS id,
+			c.IS_SIGN AS isSign,
+			c.RESOURCE_CODE AS resourceCode,
+			c.RESOURCE_NAME AS resourceName,
+			c.RESOURCE_URL AS resourceUrl,
+			c.USE_LOGIN AS useLogin
+		FROM
+			permission_resource A
+		LEFT JOIN permission B ON A.PERMISSION_ID = B.ID
+		LEFT JOIN opt_resource C ON A.RESOURCE_ID = C.ID
+		WHERE
+			B.PERMISSION_TYPE_ID = 'OPT' AND  B.ID IN
+		<foreach collection="list" index="index" open="(" close=")" item="permission" separator="," >
+			#{permission.id}
+		</foreach>
+    </select>
 
 </mapper>

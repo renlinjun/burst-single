@@ -29,7 +29,7 @@
 		<if test="list != null and list.size() > 0">
 			AND A.ROLE_ID IN
 			<foreach collection="list" index="index" open="(" close=")" separator="," item="role">
-				#{id}
+				#{role.id}
 			</foreach>
 		 </if>
 	</select>
