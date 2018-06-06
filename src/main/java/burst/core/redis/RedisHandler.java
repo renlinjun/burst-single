@@ -49,6 +49,12 @@ public class RedisHandler {
 		redisTemplate.opsForValue().set(key, obj);
 	}
 	
+	public Object getObj(String key) {
+		if(redisTemplate.hasKey(key)) {
+			return redisTemplate.opsForValue().get(key);
+		}
+		return null;
+	}
 	
 	/**
 	 * 从redis中获取json数据

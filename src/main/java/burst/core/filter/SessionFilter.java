@@ -65,6 +65,8 @@ public class SessionFilter implements Filter {
 		while(headers.hasMoreElements()) {
 			String token = headers.nextElement();
 			isTokenApprove = jwtToken.verifyToken(token);
+			//将token存入放入请求信息中
+			request.setAttribute("token", token);
 			break;
 		}
 		//如果token验证通过，则执行下一个过滤器，否则返回信息
