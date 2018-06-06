@@ -46,6 +46,11 @@ public class Menu extends Model<Menu> {
      * 菜单所属应用
      */
     private String appId;
+    
+    /**
+     * 是否显示
+     */
+    private int isHidden;
 
     /**
      * 上级菜单ID
@@ -95,12 +100,20 @@ public class Menu extends Model<Menu> {
     public void setpId(String pId) {
         this.pId = pId;
     }
+    
+    public int getIsHidden() {
+		return isHidden;
+	}
+
+	public void setIsHidden(int isHidden) {
+		this.isHidden = isHidden;
+	}
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
-
+    
     @Override
     public String toString() {
         return "Menu{" +
@@ -112,4 +125,6 @@ public class Menu extends Model<Menu> {
         ", pId=" + pId +
         "}";
     }
+
+	
 }

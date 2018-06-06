@@ -4,13 +4,12 @@ import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.system.entity.Dept;
-import burst.modular.system.entity.Role;
 import burst.modular.system.service.IDeptService;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import io.netty.util.internal.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -19,9 +18,12 @@ import java.util.Map;
  * @author yf.wang
  * @Title: mvc部门控制层
  * @Package
- * @Description: 部门控制层 人员将加挂在部门下
+ * @Description: mvc部门控制层 人员将加挂在部门下
  * @date 2018/5/30 15:29
  */
+
+@RestController
+@RequestMapping("/system/dept")
 public class DeptController {
 
 
@@ -32,11 +34,12 @@ public class DeptController {
 
     /**
      * description:树形结构查询（添加时候默认 首先选择上级机构，为空则数据库默认p_dept 为‘0’）
+     *
      * @param requestData
      * @return
      */
     @RequestMapping(value = "/treeData")
-    public ResponseData treeData(RequestData requestData) {
+    public ResponseData treeData(@RequestBody RequestData requestData) {
         List<Map<String, Object>> mapList = Lists.newArrayList();
         List<Dept> list = deptService.findAll(requestData);
         Map<String, Object> map = Maps.newHashMap();
@@ -51,58 +54,79 @@ public class DeptController {
                 mapList.add(map);
             }
 
-        }else{
-            return new ResponseData(ResultConstants.OPT_FAIL,"查询部门树形结构失败");
+        } else {
+            return new ResponseData(ResultConstants.OPT_FAIL, "查询部门树形结构失败");
         }
 
 
-        return new ResponseData(ResultConstants.SUCCESS_RESPONSE,"查询部门树形结构结果如下:"+mapList);
+        return new ResponseData(ResultConstants.SUCCESS_RESPONSE, mapList);
 
     }
 
 
     /**
      * 添加部门
+     * descirption:添加根级别部门getpDeptId = ‘0’
+     *
      * @param requestData
      * @return
      * @throws Exception
      */
     @RequestMapping(value = "/add")
     public ResponseData add(@RequestBody RequestData requestData) throws Exception {
-        Integer dept =deptService.add(requestData);
-       if(dept>0) {
-			return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
-		}
+        Integer dept = deptService.add(requestData);
+        if (dept > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE,"成功插入："+dept+"条");
+        }
 
-		return new ResponseData(ResultConstants.OPT_FAIL,"操作失败");
+        return new ResponseData(ResultConstants.OPT_FAIL, "操作失败");
     }
 
     //删除
     @RequestMapping(value = "/delete")
-    public void delete(RequestData requestData) {
-      //判断是否为子级结构
+    public ResponseData delete(RequestData requestData) {
 
+        Integer result = deptService.delete(requestData);
 
-      //是，直接删除
+        if (result > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE);
+        }
 
-
-      //否，必须删除其下所有子级结构
-
+        return new ResponseData(ResultConstants.OPT_FAIL, "操作失败");
     }
 
-    //更新
+
+    /**
+     * description:更新
+     *
+     * @param requestData
+     */
     @RequestMapping(value = "/update")
-    public void update(RequestData requestData) {
+    public ResponseData update(RequestData requestData) {
+        //更新和 添加应该可以合并
+        Integer result = deptService.update(requestData);
+        if (!"0".equals(result)) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功，更新部门表数据条数:" + result);
+        }
+
+        return new ResponseData(ResultConstants.OPT_FAIL, "数据库更新失败");
     }
 
-    //查询
+
+    /**
+     * description：根据部门名称模糊查询
+     *
+     * @param requestData
+     * @return
+     */
     @RequestMapping(value = "/list")
-    public List<Role> list(RequestData requestData) {
-        return null;
+    public ResponseData list(RequestData requestData) {
+        List<Dept> deptList = deptService.findAll(requestData);
+        if (deptList != null && deptList.size() > 0) {
+            return new ResponseData(ResultConstants.SUCCESS_RESPONSE, "操作成功用户表，更新用户表数据条数:" + deptList.get(0));
+        }
+        return new ResponseData(ResultConstants.OPT_FAIL, "查询部门失败");
     }
-
-
-
 
 
     //--

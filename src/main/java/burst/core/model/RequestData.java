@@ -32,6 +32,7 @@ public class RequestData {
 		return data.toJSONString();
 	}
 	
+	
 	/**
 	 * 将请求中的数据转换为相应的实体对象
 	 * @return

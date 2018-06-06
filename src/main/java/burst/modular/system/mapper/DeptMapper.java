@@ -1,10 +1,11 @@
 package burst.modular.system.mapper;
 
-import burst.modular.system.entity.Account;
+import burst.core.model.RequestData;
 import burst.modular.system.entity.Dept;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author yf.wang
@@ -19,7 +20,7 @@ public interface DeptMapper extends BaseMapper<Dept> {
      * decription:查找树形结构
      * @return
      */
-    public List<Dept> findAll ();
+    public List<Dept> findAll (String deptName);
 
 
     /**
@@ -30,5 +31,18 @@ public interface DeptMapper extends BaseMapper<Dept> {
 	public int delByDeptId(String deptId);
 
 
+	/**
+	 * description:初始化查找实体
+	 * @param deptParm
+	 * @return
+	 */
+	public Dept get(String deptParm);
 
+
+	/**
+	 *
+	 * @param dept
+	 * @return
+	 */
+	public int updateByDeptId(Dept dept);
 }

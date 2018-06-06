@@ -3,6 +3,11 @@ package burst.modular.system.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import burst.core.util.PageUtils;
+import burst.core.util.Query;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -62,7 +67,8 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 		if(accountResult<=0) {
 			return -1;
 		}
-		
+		//给用户添加所属部门
+
 		return 1;
 		
 		
@@ -151,23 +157,32 @@ public class UserInfoServiceImpl extends ServiceImpl<UserInfoMapper, UserInfo> i
 	 * @return
 	 */
 	@Override
-	public List<UserInfo> findUserQueryPage(RequestData requestData) {
+	public PageUtils findUserQueryPage(RequestData requestData) {
 		Map<String,Object> map = requestData.getData();
-//		Page<Map<String,Object>> page = PageContext.de
+		Query query = new Query(map);
+		String userName= (String )query.get("userName");
+		Page<UserInfo> page = this.selectPage(
+			new Query<UserInfo>(map).getPage(),new EntityWrapper<UserInfo>()
+						.like(StringUtils.isNotBlank(userName),"USER_NAME", userName));
 
-		return null;
+		return new PageUtils(page);
 	}
 
 
     /**
      *
-     * @param userInfoParm
+     * @param requestData
      * @return
      */
 	@Override
-    public UserInfo get(String userInfoParm ){
-        UserInfo userInfo =userInfoMapper.get(userInfoParm);
-	    return userInfo;
+    public UserInfo get(RequestData requestData ){
+		UserInfo userInfoParm = requestData.parseObj(UserInfo.class);
+		if (StringUtil.isNullOrEmpty(userInfoParm.getId())){
+		UserInfo userInfo = userInfoMapper.get(userInfoParm.getId());
+			return userInfo;
+		}else{
+			return new UserInfo();
+		}
     }
 
 

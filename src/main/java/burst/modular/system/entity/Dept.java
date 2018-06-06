@@ -1,8 +1,12 @@
 package burst.modular.system.entity;
 
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
+
+import java.io.Serializable;
 
 /**
  * 部门表
@@ -10,18 +14,38 @@ import com.baomidou.mybatisplus.enums.IdType;
  *
  */
 @TableName("DEPT")
-public class Dept {
+public class Dept extends Model<Dept> {
+
+	 private static final long serialVersionUID = 1L;
 
 	@TableId(value="ID",type=IdType.UUID)
 	private String id;
+
+	@TableField("DEPT_CODE")
 	private String deptCode;
+
+	@TableField("DEPT_NAME")
 	private String deptName;
+
+	@TableField("DEPT_TYPE")
 	private String deptTypeId;
+
+	@TableField("P_DEPTS_ID")
 	private String pDeptId;
+
+	@TableField("P_DEPTS_IDS")
 	private String pDeptIds;
+
+	@TableField("PRIMARY_PERSON")
 	private String primaryPerson;
+
+	@TableField("DEPUTY_PERSON")
 	private String deputyPerson;
+
+	@TableField("REMARK")
 	private String remark;
+
+	@TableField("DEL_FLAG")
 	private String delFlag;
 
 
@@ -121,5 +145,10 @@ public class Dept {
 				", remark='" + remark + '\'' +
 				", delFlag='" + delFlag + '\'' +
 				'}';
+	}
+
+	@Override
+	protected Serializable pkVal() {
+		return  this.id;
 	}
 }

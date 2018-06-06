@@ -17,7 +17,7 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource 
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/burst?characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://172.25.0.15:3306/burst?characterEncoding=utf8&useSSL=false
     username: root
     password: 123456
   redis:
@@ -34,7 +34,11 @@ mybatis-plus:
   global-config: 
     cache-enabled: false
     db-column-underline: true
-  
+logging:
+  level:
+    root: info
+    burst: debug
+
 ---
 spring: 
   profiles: test

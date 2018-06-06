@@ -13,6 +13,12 @@ import burst.modular.system.entity.Dept;
 import burst.modular.system.mapper.DeptMapper;
 import burst.modular.system.service.IDeptService;
 import io.netty.util.internal.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author yf.wang
@@ -28,6 +34,21 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     private  DeptMapper deptMapper;
 
 
+    @Override
+    public Dept get(RequestData requestData) {
+        Dept deptParm = requestData.parseObj(Dept.class);
+        if (StringUtil.isNullOrEmpty(deptParm.getId())) {
+            Dept dept = deptMapper.get(deptParm.getId());
+            if(dept != null){
+                return dept;
+
+            }
+            return new Dept();
+        } else {
+            return new Dept();
+        }
+    }
+
     /**
      * 添加部门实现方法
      * @param requestData
@@ -39,13 +60,16 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
         // 如果没有设置父节点，则代表为根节点，有则获取父节点实体
         if (dept.getpDeptId() == null || StringUtils.isEmpty(dept.getpDeptId())
                 || "0".equals(dept.getpDeptId())){
-			dept.setpDeptId(null);
-		}else{
-			dept.setpDeptId(dept.getpDeptId());
+			dept.setpDeptId("0");
 		}
 
 		// 设置新的父节点字符串
-		dept.setpDeptIds(dept.getpDeptId()+dept.getpDeptId()+",");
+        if(dept.getpDeptIds()!=null){
+            dept.setpDeptIds(dept.getpDeptIds()+dept.getpDeptId()+",");
+        }else {
+          dept.setpDeptIds(dept.getpDeptId()+",");
+        }
+
         // 保存
         int result = baseMapper.insert(dept);
         return result;
@@ -59,8 +83,8 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
         String pid = dept.getpDeptId();
         String pids = dept.getpDeptIds();
         String findPids;
-        int result=0;
-        int j= pids.indexOf("pid");
+        int result;
+        int j= pids.indexOf(pid);
         findPids= pids.substring(j,pids.length());
         //删除本身
         result=deptMapper.delByDeptId(dept.getId());
@@ -69,7 +93,7 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
             String[] pidsList = findPids.split(",");
             for(String pidsL : pidsList){
                 if(!StringUtil.isNullOrEmpty(pidsL)){
-                    //删除本身和 下级所有
+                    //删除下级所有
                     result=deptMapper.delByDeptId(pidsL);
                 }
             }
@@ -79,9 +103,20 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
     }
 
     @Override
-    public void update(RequestData requestData) {
-
+    public Integer update(RequestData requestData) {
+        Integer result = 0;
+        Dept dept0 = requestData.parseObj(Dept.class);
+        // 获取修改前的parentIds，用于更新子节点的parentIds
+        Dept dept = deptMapper.get(null);
+        String oldPid = dept.getpDeptId();
+        String oldpids = dept.getpDeptIds();
+        // 设置新的父节点串
+        String pids = oldpids.replace(oldPid,dept0.getpDeptId());
+        dept0.setpDeptIds(pids);
+        result =deptMapper.updateByDeptId(dept0);
+        return result;
     }
+
 
     /**
      * 查询
@@ -103,7 +138,13 @@ public class DeptServiceImpl extends ServiceImpl<DeptMapper, Dept> implements ID
      */
     @Override
     public List<Dept> findAll (RequestData requestData){
-        List<Dept> deptList=deptMapper.findAll();
+
+        List<Dept> deptList =null;
+        if(requestData!=null){
+            Dept deptMap = requestData.parseObj(Dept.class);
+           deptList=deptMapper.findAll(deptMap.getDeptName());
+        }
+
 
         return deptList;
     }

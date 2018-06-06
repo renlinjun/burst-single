@@ -17,6 +17,15 @@ import burst.modular.system.entity.Dept;
 public interface IDeptService extends IService<Dept> {
 
 
+
+	/**
+	 *
+	 * @param requestData
+	 * @return
+	 */
+	public Dept get (RequestData requestData);
+
+
 	/**
 	 * 添加
 	 * @param requestData
@@ -39,7 +48,7 @@ public interface IDeptService extends IService<Dept> {
 	 * @param requestData
 	 * @return
 	 */
-	public void update(RequestData requestData);
+	public Integer update(RequestData requestData);
 
 
 	/**

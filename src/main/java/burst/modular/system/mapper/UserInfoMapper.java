@@ -49,4 +49,12 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 	 * @return
 	 */
 	public List<UserInfo> findUserMemberShip (String id);
+
+
+	/**
+	 *
+	 * @param maps
+	 * @return
+	 */
+	public List<UserInfo> queryUserPage(Map maps);
 }

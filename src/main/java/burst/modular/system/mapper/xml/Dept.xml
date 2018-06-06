@@ -7,8 +7,8 @@
  		a.DEPT_CODE,
 		a.DEPT_NAME,
  		a.DEPT_TYPE,
- 		a.P_DEPT,
-		a.P_DEPTS,
+ 		a.P_DEPTS_ID,
+		a.P_DEPTS_IDS,
  		a.PRIMARY_PERSON,
 		a.DEPUTY_PERSON,
 		a.REMARK,
@@ -21,12 +21,27 @@
 
 
 
+	<select id="get" resultType="burst.modular.system.entity.Dept">
+		SELECT
+			<include refid="entityColumns"/>
+		FROM dept a
+		WHERE 1=1
+		<if test="_parameter != null and _parameter != ''">
+		AND a.id = #{deptParm}
+		</if>
+	</select>
+
+
+
 	<select id="findAll" resultType="burst.modular.system.entity.Dept">
 		SELECT
 			<include refid="entityColumns"/>
 		FROM dept a
 		<include refid="entityJoins"/>
 		WHERE (a.del_flag = 'N')
+		<if test="_parameter != null and _parameter != ''">
+			AND USER_INFO_ID like CONCAT('%',#{deptName},'%')
+		</if>
 		 ORDER BY a.DEPT_CODE desc
 	</select>
 
@@ -37,4 +52,28 @@
 		del_flag = 'N'
 		WHERE id = #{deptId}
 	</update>
+
+
+
+
+
+
+	<update id="updateByDeptId">
+		UPDATE dept SET
+		DEPT_CODE = #{deptCode},
+		DEPT_NAME = #{deptName},
+		DEPT_TYPE = #{deptType},
+		P_DEPT = #{pDept},
+		P_DEPTS = #{pDepts},
+		PRIMARY_PERSON = #{primaryPerson}
+		DEPUTY_PERSON = #{deptPerson}
+		DEL_FLAG = #{delFlag}
+		REMARK = #{remark}
+		WHERE id = #{id}
+	</update>
+
+
+
+
+
 </mapper>

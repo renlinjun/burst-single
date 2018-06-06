@@ -23,5 +23,26 @@
     		(#{permissionId},#{menuId})
     	</foreach>
     </insert>
+    
+    <select id="queryMenuByPermission" parameterType="java.util.List" resultType="Menu">
+		SELECT
+			c.ID AS id,
+			c.APP_ID AS appid,
+			c.MENU_CODE AS menuCode,
+			c.MENU_NAME AS menuName,
+			c.MENU_URL AS menuUrl,
+			c.P_ID AS pId
+		FROM
+			`permission_menu` a
+		LEFT JOIN permission b ON a.PERMISSION_ID = b.ID
+		LEFT JOIN menu c ON a.MENU_iD = c.id
+		WHERE
+			b.PERMISSION_TYPE_ID = 'MENU'
+		AND a.PERMISSION_ID IN 
+		<foreach collection="list" index="index" open="(" close=")" item="p" separator=",">
+			#{p.id}
+		</foreach>
+    
+    </select>
 
 </mapper>
