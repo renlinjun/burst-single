@@ -64,6 +64,10 @@ public class LoginInfo implements Serializable {
 
 	public void setDepts(List<Dept> depts) {
 		this.depts = depts;
-	} 
+	}
+	
+	public String toString() {
+		return "userId="+userId+",userCode="+userCode+",userName="+userName;
+	}
 
 }

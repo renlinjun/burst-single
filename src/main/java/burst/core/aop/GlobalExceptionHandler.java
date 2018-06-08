@@ -47,6 +47,12 @@ public class GlobalExceptionHandler {
 		return new ResponseData(ResultConstants.EXCEPTION_CODE, "数据操作异常");
 	}
 	
+	/**
+	 * 自定义异常拦截
+	 * @param request
+	 * @param exception
+	 * @return
+	 */
 	@ExceptionHandler(CustomException.class)
 	public ResponseData customExceptionHandler(HttpServletRequest request, CustomException exception) {
 		exception.printStackTrace();

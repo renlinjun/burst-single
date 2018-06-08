@@ -7,7 +7,11 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.ContextLoader;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
+/**
+ * 
+ * @author RLJ
+ *
+ */
 public class ContextHolder {
 
 	/**
