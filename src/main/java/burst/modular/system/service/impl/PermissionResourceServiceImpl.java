@@ -104,6 +104,10 @@ public class PermissionResourceServiceImpl extends ServiceImpl<PermissionResourc
 	
 	@Override
 	public List<Map<String,OptResource>> queryOptResourceByPermission(List<Permission> permissions) {
+		if(permissions.size()<=0) {
+			List<Map<String,OptResource>> list = new ArrayList<>();
+			return list;
+		}
 		//查询资源列表
 		List<OptResource> optResources = baseMapper.queryOptResourceByPermission(permissions);
 		//转换为以键值对的方式存储

@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import burst.modular.system.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import burst.core.annotation.RestApi;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 
@@ -23,7 +25,7 @@ import burst.modular.system.entity.Account;
  * @since 2018-05-16
  */
 @RestController
-@RequestMapping("/system/account")
+@RestApi(path="/system/account")
 public class AccountController {
 	
 	@Autowired
@@ -36,7 +38,7 @@ public class AccountController {
 	@RequestMapping(value="/delete")
 	public void delete(RequestData requestData) {};
 	//更新
-	@RequestMapping(value="/update")
+	@RestApi(path="/update",name="更新账号",code="UPDATE_ACCOUNT")
 	public ResponseData update(@RequestBody RequestData requestData) {
 		return accountService.update(requestData);
 	}

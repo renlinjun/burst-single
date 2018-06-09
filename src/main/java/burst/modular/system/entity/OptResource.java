@@ -47,12 +47,12 @@ public class OptResource extends Model<OptResource> {
     /**
      * 是否需要登录(true,false)
      */
-    private String isLogin;
+    private boolean isLogin;
 
     /**
      * 是否需要签名(true.false)
      */
-    private String isSign;
+    private boolean isSign;
 
     public String getId() {
         return id;
@@ -82,22 +82,24 @@ public class OptResource extends Model<OptResource> {
     public void setResourceCode(String resourceCode) {
         this.resourceCode = resourceCode;
     }
-    public String getIsLogin() {
-        return isLogin;
-    }
 
-    public void setIsLogin(String isLogin) {
-        this.isLogin = isLogin;
-    }
-    public String getIsSign() {
-        return isSign;
-    }
+    public boolean isLogin() {
+		return isLogin;
+	}
 
-    public void setIsSign(String isSign) {
-        this.isSign = isSign;
-    }
+	public void setLogin(boolean isLogin) {
+		this.isLogin = isLogin;
+	}
 
-    @Override
+	public boolean isSign() {
+		return isSign;
+	}
+
+	public void setSign(boolean isSign) {
+		this.isSign = isSign;
+	}
+
+	@Override
     protected Serializable pkVal() {
         return this.id;
     }

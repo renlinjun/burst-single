@@ -109,6 +109,15 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpcore</artifactId>
         </dependency>
+        
+        <!-- 一款很好用的对反射封装的包 -->
+        <dependency>
+	        <groupId>org.reflections</groupId>
+	    	<artifactId>reflections</artifactId>
+	    	<version>0.9.10</version>
+        </dependency>
+       
+        
     </dependencies>
 
     <profiles>

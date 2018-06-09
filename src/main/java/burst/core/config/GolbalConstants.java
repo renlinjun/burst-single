@@ -18,5 +18,6 @@ public class GolbalConstants {
 	public static String MENU_CACHE_SUFFIX = "_menu";
 	//操作资源后缀
 	public static String OPT_RESOURCE_CACHE_SUFFIX = "_opt";
+	public static String ALL_OPT_RESOURCE = "opt";
 
 }
