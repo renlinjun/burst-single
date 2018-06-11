@@ -41,6 +41,10 @@ public enum ResultConstants {
 	 * 数据检查错误
 	 */
 	public static int DATA_CHECK_ERROR = 6;
+	/**
+	 * 系统错误
+	 */
+	public static int SYS_ERROR = 999;
 	
 	private ResultConstants(int code,String msg) {
 		this.code = code;

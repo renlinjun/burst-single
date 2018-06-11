@@ -59,15 +59,12 @@ public class SessionFilter implements Filter {
 		} 
 		
 		
-		//只获取验证权限请求头的第一个Authorization
+		//获取验证权限请求头的Authorization,从"Authorization"中获取token
 		boolean isTokenApprove = false;
-		Enumeration<String> headers = httpRequest.getHeaders("Authorization");
-		while(headers.hasMoreElements()) {
-			String token = headers.nextElement();
-			isTokenApprove = jwtToken.verifyToken(token);
-			setTokenToRequest(httpRequest,token);
-			break;
-		}
+		String token = httpRequest.getHeader("Authorization");
+		isTokenApprove = jwtToken.verifyToken(token);
+		//将token放入request请求中
+		setTokenToRequest(httpRequest,token);
 		//如果token验证通过，则执行下一个过滤器，否则返回信息
 		if(isTokenApprove) {
 			filterChain.doFilter(request, response);
