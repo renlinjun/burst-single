@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import burst.core.auth.JwtToken;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.auth.service.impl.ILoginService;
