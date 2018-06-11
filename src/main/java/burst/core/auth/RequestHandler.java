@@ -40,7 +40,6 @@ public class RequestHandler {
 	 *      false: 不需要登录
 	 * @throws CustomException 
 	 */
-	@SuppressWarnings("unchecked")
 	public boolean isNeedLogin(String url) throws CustomException {
 		if(StrUtil.isEmpty(url)) {
 			throw new CustomException(ResultConstants.SYS_ERROR, "请求的地址为null");
@@ -49,16 +48,46 @@ public class RequestHandler {
 		if(url.endsWith(authProperties.getLoginUrl())) {
 			return false;
 		}
-		//获取所有资源
-		Map<String,OptResource> optResources = (Map<String, OptResource>)redisHandler.getObj(GolbalConstants.ALL_OPT_RESOURCE);
-		if(!optResources.containsKey(url)) {
-			throw new CustomException(ResultConstants.SYS_ERROR, "请求Url不存在，请联系管理员");
-		}
-		//返回是否需要登录
-		OptResource optResource = optResources.get(url);
+		
+		OptResource optResource = getResourceByUrl(url);
+		
 		return optResource.isLogin();
 	}
 	
+	/**
+	 * 检查签名
+	 * @param url
+	 * @return
+	 */
+	public boolean checkSign(String url) {
+		/*if(StrUtil.isEmpty(url)) {
+			throw new CustomException(ResultConstants.SYS_ERROR, "请求的地址为null");
+		}
+		
+		OptResource optResource = getResourceByUrl(url);
+		if() {
+			
+		}*/
+		return true;
+		
+	}
+	
+	
+	private OptResource getResourceByUrl(String url) {
+		//获取所有资源
+		@SuppressWarnings("unchecked")
+		Map<String,OptResource> optResources = (Map<String, OptResource>)redisHandler.getObj(GolbalConstants.ALL_OPT_RESOURCE);
+		if(!optResources.containsKey(url)) {
+			try {
+				throw new CustomException(ResultConstants.SYS_ERROR, "请求Url不存在，请联系管理员");
+			} catch (CustomException e) {
+				e.printStackTrace();
+			}
+		}
+		//返回是否需要登录
+		OptResource optResource = optResources.get(url);
+		return optResource;
+	}
 	
 	
 	
