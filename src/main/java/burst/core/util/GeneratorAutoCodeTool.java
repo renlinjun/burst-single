@@ -26,7 +26,7 @@ import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
  */
 public class GeneratorAutoCodeTool {
 	
-	private String OUT_PUT_DIR = "D://code"; 
+	//private String OUT_PUT_DIR = "D://code"; 
 	
 	static AutoGenerator mpg = new AutoGenerator();
 	

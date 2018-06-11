@@ -5,11 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import burst.core.config.AuthProperties;
-import burst.core.config.ResultConstants;
-import burst.core.model.ResponseData;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 
 /**
  * 对session的操作类

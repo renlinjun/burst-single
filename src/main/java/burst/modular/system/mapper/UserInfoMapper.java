@@ -6,7 +6,6 @@ import java.util.Map;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 import burst.modular.system.entity.UserInfo;
-import org.apache.catalina.User;
 
 /**
  * <p>
@@ -56,5 +55,6 @@ public interface UserInfoMapper extends BaseMapper<UserInfo> {
 	 * @param maps
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	public List<UserInfo> queryUserPage(Map maps);
 }

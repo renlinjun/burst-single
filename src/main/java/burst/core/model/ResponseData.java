@@ -1,7 +1,5 @@
 package burst.core.model;
 
-import com.alibaba.fastjson.JSONObject;
-
 import burst.core.config.ResultConstants;
 
 /**

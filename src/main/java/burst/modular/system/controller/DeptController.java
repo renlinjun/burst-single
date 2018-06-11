@@ -1,18 +1,21 @@
 package burst.modular.system.controller;
 
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+
 import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.system.entity.Dept;
 import burst.modular.system.service.IDeptService;
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import io.netty.util.internal.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author yf.wang

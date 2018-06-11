@@ -1,11 +1,10 @@
 package burst.modular.system.mapper;
 
-import burst.core.model.RequestData;
-import burst.modular.system.entity.Dept;
+import java.util.List;
+
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
-import java.util.List;
-import java.util.Map;
+import burst.modular.system.entity.Dept;
 
 /**
  * @author yf.wang
