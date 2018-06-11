@@ -1,10 +1,9 @@
-package burst.modular.auth;
+package burst.modular.auth.service;
 
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisKeyspaceEvent;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSONObject;
@@ -15,7 +14,7 @@ import burst.core.config.ResultConstants;
 import burst.core.model.LoginInfo;
 import burst.core.model.ResponseData;
 import burst.core.redis.RedisHandler;
-import burst.modular.auth.impl.ILoginService;
+import burst.modular.auth.service.impl.ILoginService;
 import burst.modular.system.entity.Account;
 import burst.modular.system.entity.OptResource;
 import burst.modular.system.entity.Permission;

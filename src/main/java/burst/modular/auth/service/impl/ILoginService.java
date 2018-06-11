@@ -1,4 +1,4 @@
-package burst.modular.auth.impl;
+package burst.modular.auth.service.impl;
 
 import burst.core.model.ResponseData;
 

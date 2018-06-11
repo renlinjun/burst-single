@@ -1,4 +1,4 @@
-package burst.modular.auth;
+package burst.modular.auth.service;
 
 public interface IAuthService {
 	

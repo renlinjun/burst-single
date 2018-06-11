@@ -1,17 +1,14 @@
-package burst.modular.system.controller;
+package burst.modular.auth.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
-
 import burst.core.auth.JwtToken;
-import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-import burst.modular.auth.impl.ILoginService;
+import burst.modular.auth.service.impl.ILoginService;
 
 /**
  * 登录操作相关controller
@@ -24,9 +21,6 @@ public class LoginController {
 	
 	@Autowired
 	private ILoginService loginService;
-	
-	@Autowired
-	private JwtToken jwtToken;
 	
 	/**
 	 * 登录接口
