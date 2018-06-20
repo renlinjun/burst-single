@@ -12,6 +12,7 @@ import burst.core.config.ResultConstants;
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
 import burst.modular.system.entity.Menu;
+import burst.modular.system.entity.MenuTree;
 import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionMenu;
 import burst.modular.system.mapper.PermissionMenuMapper;
@@ -67,8 +68,17 @@ public class PermissionMenuServiceImpl extends ServiceImpl<PermissionMenuMapper,
 		return null;
 	}
 	@Override
-	public List<Menu> queryMenuTreeByPermission(List<Permission> permissions) {
-		// TODO Auto-generated method stub
+	public MenuTree queryMenuTreeByPermission(List<Permission> permissions) {
+		List<Menu> Menus = baseMapper.queryMenuByPermission(permissions);
+		
+		for(Menu menu : Menus) {
+			
+		}
+		
 		return null;
-	};
+	}
+	
+	private List<Menu> getChildByPid(List<Menu> menus,String pid) {
+		return null;
+	}
 }

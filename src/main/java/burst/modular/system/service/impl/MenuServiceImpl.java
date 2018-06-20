@@ -36,5 +36,5 @@ public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements IM
 	//查询
 	public List<Menu> list(RequestData requestData) {
 		return null;
-	};
+	}
 }

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.service.IService;
 
 import burst.core.model.RequestData;
 import burst.core.model.ResponseData;
-import burst.modular.system.entity.Menu;
+import burst.modular.system.entity.MenuTree;
 import burst.modular.system.entity.Permission;
 import burst.modular.system.entity.PermissionMenu;
 
@@ -32,5 +32,5 @@ public interface IPermissionMenuService extends IService<PermissionMenu> {
 	//查询
 	public List<PermissionMenu> list(RequestData requestData);
 	
-	public List<Menu> queryMenuTreeByPermission(List<Permission> permissions);
+	public MenuTree queryMenuTreeByPermission(List<Permission> permissions);
 }
